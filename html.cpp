@@ -3,7 +3,8 @@
 #include "html.hpp"
 #include <QDebug>
 
-std::vector<Film> HTML::findMarks(QString & htmlContent) const {
+std::vector<Film> HTML::findMarks(QString & htmlContent)
+{
     std::vector<Film> films;
     QString regular = "<div class=\"[^>]*\" data-type=\"[^>]*\" data-start=\"" + this->getDate() + ",[^>]*>";
     QString tags("<[^>]*>");
@@ -28,6 +29,7 @@ std::vector<Film> HTML::findMarks(QString & htmlContent) const {
         gx.indexIn(htmlContent, pos);
         genre = gx.capturedTexts()[0];
         genre.remove(QRegExp(tags));
+        removeEntity(genre);
 
         QRegExp tx (regTitle);
         tx.setMinimal(true);
@@ -39,12 +41,14 @@ std::vector<Film> HTML::findMarks(QString & htmlContent) const {
             title.chop(1);
         while(title[0] == ' ')
             title.remove(0, 1);
+        removeEntity(title);
 
         QRegExp sx (regSuffix);
         sx.setMinimal(true);
         sx.indexIn(genre);
         genreSuffix = sx.capturedTexts()[0];
         genre.remove(genreSuffix);
+        removeEntity(genreSuffix);
 
 
         pos += rx.matchedLength();
@@ -53,4 +57,17 @@ std::vector<Film> HTML::findMarks(QString & htmlContent) const {
         films.push_back(film);
     }
     return films;
+}
+
+void HTML::removeEntity(QString& arg)
+{
+    arg.replace("&oacute;", "ó");
+    arg.replace("&uuml;", "ü");
+    arg.replace("&quot;", "\"");
+    arg.replace("&amp;", "&");
+    arg.replace("&Eacute;", "É");
+    arg.replace("&Ccedil;", "Ç");
+    arg.replace("&ouml;", "ö");
+    arg.replace("&szlig;", "ß");
+    arg.replace("&uacute;", "ú");
 }

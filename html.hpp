@@ -6,7 +6,8 @@
 class HTML{
 public:
 
-    std::vector<Film> findMarks(QString &htmlContent) const;
+    std::vector<Film> findMarks(QString &htmlContent);
+    void removeEntity(QString &arg);
 
     const std::string& getChannel() const {
 		return channel;

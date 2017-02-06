@@ -25,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox_2->addItem("HBO+3");
     ui->comboBox_2->addItem("Cinemax");
     ui->comboBox_2->addItem("Cinemax+2");
+
+
 }
 
 MainWindow::~MainWindow()
