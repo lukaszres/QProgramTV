@@ -36,3 +36,6 @@ HEADERS  += mainwindow.h \
     html.hpp
 
 FORMS    += mainwindow.ui
+
+DISTFILES += \
+    README.md
