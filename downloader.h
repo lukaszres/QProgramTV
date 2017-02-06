@@ -1,3 +1,4 @@
+#pragma once
 #ifndef DOWNLOADER_H
 #define DOWNLOADER_H
 
@@ -7,7 +8,6 @@
 #include <QNetworkReply>
 #include <QUrl>
 #include <QDateTime>
-#include <QFile>
 #include <QDebug>
 
 class Downloader : public QObject

@@ -73,19 +73,6 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </item>
-    <item row="1" column="2">
-     <widget class="QPushButton" name="pushButton">
-      <property name="maximumSize">
-       <size>
-        <width>100</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>Wybierz program</string>
-      </property>
-     </widget>
-    </item>
     <item row="2" column="0">
      <widget class="QLabel" name="label_2">
       <property name="text">
@@ -113,7 +100,7 @@ p, li { white-space: pre-wrap; }
    </property>
    <widget class="QMenu" name="menuWersja_1_0">
     <property name="title">
-     <string>Wersja 1.0</string>
+     <string>Wersja 1.1</string>
     </property>
    </widget>
    <addaction name="menuWersja_1_0"/>

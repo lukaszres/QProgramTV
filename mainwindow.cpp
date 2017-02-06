@@ -1,15 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "downloader.h"
-#include "Windows.h"
 #include "html.hpp"
-#include "film.hpp"
 #include "time.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+
     ui->setupUi(this);
     ui->comboBox_2->addItem("TVP+1");
     ui->comboBox_2->addItem("TVP+2");
@@ -33,50 +32,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pushButton_clicked()
-{
-    connect(d, &Downloader::finished, this, &MainWindow::on_doDownload_Finished);
-    ui->label_2->setText("Proszę czekać...");
-    d->doDownload(ui->comboBox_2->currentText());
-}
-
-void MainWindow::on_doDownload_Finished()
-{
-    QString htmlContent = d->getHtmlContent();
-
-    HTML html;
-    html.setDate(getDate());
-    html.setChannel(ui->comboBox_2->currentText().toStdString());
-    films = html.findMarks(htmlContent);
-    createFilms(films);
-
-    for (unsigned int i = 0; i < films.size(); i++){
-        textBrowserContent = textBrowserContent + films[i].getTime() + " :: " + films[i].getChannel()
-                + " :: " + films[i].getGenre() + " :: " + films[i].getTitle() + "\n";
-    }
-    ui->textBrowser->setText(textBrowserContent);
-    QString labelText = "Wszystkich filmów: " + QString::number(films.size());
-    ui->label->setText(labelText);
-
-    ui->comboBox->clear();
-    ui->comboBox->addItem("Wszystkie");
-    for (unsigned int i=0; i<genreList.size(); i++){
-        ui->comboBox->addItem(genreList[i]);
-    }
-}
-
-void MainWindow::createFilms(std::vector <Film> films){
-    genreList.clear();
-    textBrowserContent = "";
-    for (unsigned int i = 0; i< films.size(); i++){
-        textBrowserContent =  textBrowserContent + films[i].getTime() + " :: " + films[i].getChannel() + " :: " + films[i].getGenre() + " :: " + films[i].getTitle() + "\n";
-        if (std::find(genreList.begin(), genreList.end(), films[i].getGenre()) == genreList.end()){
-            genreList.push_back(films[i].getGenre());
-        }
-    }
-    std::sort (genreList.begin(), genreList.end());
-}
-
 void MainWindow::on_comboBox_currentIndexChanged(const QString &genre)
 {
     filmsByGenre.clear();
@@ -93,6 +48,47 @@ void MainWindow::on_comboBox_currentIndexChanged(const QString &genre)
     ui->label_2->setText("Wybrano " + QString::number(filmsByGenre.size()) + " " + genre );
 
     ui->textBrowser->setText(textBrowserContent);
+}
+void MainWindow::on_comboBox_2_currentIndexChanged(const QString &arg1)
+{
+    connect(d, &Downloader::finished, this, &MainWindow::doDownload_Finished);
+    ui->label_2->setText("Proszę czekać...");
+    d->doDownload(arg1);
+}
+
+
+
+void MainWindow::doDownload_Finished()
+{
+    QString htmlContent = d->getHtmlContent();
+
+    HTML html;
+    html.setDate(QString::fromStdString(getDate()));
+    html.setChannel(ui->comboBox_2->currentText().toStdString());
+    films = html.findMarks(htmlContent);
+    createFilms(films);
+
+    QString labelText = "Wszystkich filmów: " + QString::number(films.size());
+    ui->label->setText(labelText);
+
+    ui->comboBox->clear();
+    ui->comboBox->addItem("Wszystkie");
+    for (unsigned int i=0; i<genreList.size(); i++){
+        ui->comboBox->addItem(genreList[i]);
+    }
+}
+
+void MainWindow::createFilms(std::vector <Film> films){
+    genreList.clear();
+    textBrowserContent = "";
+    for (unsigned int i = 0; i< films.size(); i++){
+        textBrowserContent =  textBrowserContent + films[i].getTime() + " :: " + films[i].getChannel() + " :: "
+                + films[i].getGenre() + films[i].getGenreSuffix() + " :: " + films[i].getTitle() + "\n";
+        if (std::find(genreList.begin(), genreList.end(), films[i].getGenre()) == genreList.end()){
+            genreList.push_back(films[i].getGenre());
+        }
+    }
+    std::sort (genreList.begin(), genreList.end());
 }
 
 std::string MainWindow::getDate()

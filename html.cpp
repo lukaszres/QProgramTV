@@ -1,55 +1,56 @@
-#include <iostream>
-#include <string>
-#include <process.h>
-#include <windows.h>
-#include <fstream>
 #include <regex>
-#include "film.hpp"
+#include <QRegExp>
 #include "html.hpp"
 #include <QDebug>
 
 std::vector<Film> HTML::findMarks(QString & htmlContent) const {
-	std::vector<Film> films;
-    std::string regular = "<div class=\"[^>]*\" data-type=\"[^>]*\" data-start=\"" + this->getDate() + ",[^>]*>(.*?)</div>";
-    std::regex pattern(regular);
-    std::smatch result;
-    for (unsigned int i = 0; i < 1; i++) {
+    std::vector<Film> films;
+    QString regular = "<div class=\"[^>]*\" data-type=\"[^>]*\" data-start=\"" + this->getDate() + ",[^>]*>";
+    QString tags("<[^>]*>");
+    QString regHour("[0-9]{2}:[0-9]{2}");
+    QString regTitle("<span class=\"sd\">(.*)?</span>");
+    QString regGenre("<span class=\"st\">(.*)?</span>");
+    QString regSuffix(" odc\\.(.*)$");
+    QString hour = "", title = "", genre = "", genreSuffix = "";
 
-        std::string buffor = htmlContent.toStdString();
+    QRegExp rx(regular);
+    int pos = 0;
 
-		auto words_begin = std::sregex_iterator(buffor.begin(), buffor.end(),
-				pattern);
-        auto words_end = std::sregex_iterator();
+    while ((pos = rx.indexIn(htmlContent, pos)) != -1) {
 
-		for (std::sregex_iterator i = words_begin; i != words_end; ++i) {
+        QRegExp hx (regHour);
+        hx.setMinimal(true);
+        hx.indexIn(htmlContent, pos);
+        hour = hx.capturedTexts()[0];
 
-			std::smatch match = *i;
-			std::string match_str = match.str();
+        QRegExp gx (regGenre);
+        gx.setMinimal(true);
+        gx.indexIn(htmlContent, pos);
+        genre = gx.capturedTexts()[0];
+        genre.remove(QRegExp(tags));
 
-			buffor.erase(0, buffor.find(match_str));
+        QRegExp tx (regTitle);
+        tx.setMinimal(true);
+        tx.indexIn(htmlContent, pos);
+        title = tx.capturedTexts()[0];
+        title.remove(QRegExp(tags));
+        title.remove(genre);
+        while(title[title.size()-1] == ' ')
+            title.chop(1);
+        while(title[0] == ' ')
+            title.remove(0, 1);
 
-			std::regex znacznik("<[^>]*>");
-			std::regex regHour("[0-9]{2}:[0-9]{2}");
-			std::regex regTitle("<span class=\"sd\">(.*?)</span>");
-			std::regex regGenre("<span class=\"st\">(.*?)</span>");
-			std::smatch wynik;
-            std::string godzina, title, genre;
-			if (std::regex_search(buffor, wynik, regHour)) {
-                godzina = wynik[0];
-			}
-			if (regex_search(buffor, wynik, regGenre)) {
-                genre = wynik[0];
-			}
-			if (regex_search(buffor, wynik, regTitle)) {
-                title = wynik[0];
-			}
-			genre = std::regex_replace(genre, znacznik, "");
-			title = std::regex_replace(title, znacznik, "");
-			unsigned int position = title.find(genre);
-			title.erase(position, title.size());
-            Film film(QString::fromStdString(godzina), QString::fromStdString(this->channel), QString::fromStdString(genre), QString::fromStdString(title));
-			films.push_back(film);
-		}
+        QRegExp sx (regSuffix);
+        sx.setMinimal(true);
+        sx.indexIn(genre);
+        genreSuffix = sx.capturedTexts()[0];
+        genre.remove(genreSuffix);
+
+
+        pos += rx.matchedLength();
+
+        Film film(hour, QString::fromStdString(this->channel), genre, title, genreSuffix);
+        films.push_back(film);
     }
     return films;
 }

@@ -1,8 +1,6 @@
 #pragma once
 #ifndef HTTP_H
 #define HTTP_H
-#include <string>
-#include <vector>
 #include "film.hpp"
 
 class HTML{
@@ -42,11 +40,11 @@ public:
         return this->file;
     }
 
-    void setDate (const std::string & date) {
+    void setDate (const QString & date) {
         this->date = date;
     }
 
-    const std::string & getDate() const {
+    const QString & getDate() const {
         return this->date;
     }
 
@@ -55,6 +53,6 @@ private:
     std::string channel;
     std::string url;
     std::string command;
-    std::string date;
+    QString date;
 };
 #endif // HTTP_H
