@@ -12,12 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     createChannels();
-    for (unsigned int i = 0; i < channelsList.size(); i++){
-        ui->comboBox_2->addItem(channelsList[i]);
-        ui->comboBox_3->addItem(channelsList[i]);
-        ui->comboBox_4->addItem(channelsList[i]);
-        ui->comboBox_5->addItem(channelsList[i]);
-    }
+    createComboBoxList();
     setFavoritesChannels();
 }
 
@@ -219,7 +214,7 @@ void MainWindow::sortByTime(std::vector <Film> & films, int p, int r)
     }
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_pushButtonSave_clicked()
 {
     QFile file(fileName);
     if (!file.open(QFile::WriteOnly | QFile::Text))
@@ -240,10 +235,6 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::setFavoritesChannels()
 {
-    QVector <QComboBox*> comboBoxList;
-    comboBoxList.push_back(ui->comboBox_3);
-    comboBoxList.push_back(ui->comboBox_4);
-    comboBoxList.push_back(ui->comboBox_5);
     QFile file (fileName);
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
@@ -260,9 +251,21 @@ void MainWindow::setFavoritesChannels()
             i++;
         }
     }
-
     favoriteChannelsList.clear();
     favoriteChannelsList.push_back(ui->comboBox_3->currentText());
     favoriteChannelsList.push_back(ui->comboBox_4->currentText());
     favoriteChannelsList.push_back(ui->comboBox_5->currentText());
+}
+
+void MainWindow::createComboBoxList ()
+{
+    comboBoxList.push_back(ui->comboBox_3);
+    comboBoxList.push_back(ui->comboBox_4);
+    comboBoxList.push_back(ui->comboBox_5);
+
+    for (unsigned int i = 0; i < channelsList.size(); i++){
+        ui->comboBox_2->addItem(channelsList[i]);
+        for (int j=0; j < comboBoxList.size(); j++)
+            comboBoxList[j]->addItem(channelsList[i]);
+    }
 }

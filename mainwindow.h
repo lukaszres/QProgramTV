@@ -3,6 +3,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QComboBox>
 #include "downloader.h"
 #include "film.hpp"
 
@@ -19,6 +20,7 @@ public:
     ~MainWindow();
     void createChannels();
     void createFilms(std::vector <Film> films);
+    void createComboBoxList ();
     void setFavoritesChannels();
 
     std::string MainWindow::getDate();
@@ -39,13 +41,14 @@ private slots:
 
     void on_checkBox_toggled(bool checked);
 
-    void on_pushButton_clicked();
+    void on_pushButtonSave_clicked();
 
 private:
     Ui::MainWindow *ui;
     QString textBrowserContent;
     QString currentChannel;
     std::vector<QString> channelsList;
+    QVector <QComboBox*> comboBoxList;
     std::vector<QString> favoriteChannelsList;
     std::vector<Film> films;
     std::vector <Film> filmsByGenre;
