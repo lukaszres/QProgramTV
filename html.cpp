@@ -53,7 +53,7 @@ std::vector<Film> HTML::findMarks(QString & htmlContent)
 
         pos += rx.matchedLength();
 
-        Film film(hour, QString::fromStdString(this->channel), genre, title, genreSuffix);
+        Film film(hour, channel, genre, title, genreSuffix);
         films.push_back(film);
     }
     return films;

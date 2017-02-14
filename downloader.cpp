@@ -6,15 +6,15 @@ Downloader::Downloader(QObject *parent) :
 {
 }
 
-QString Downloader::doDownload(QString channel)
+void Downloader::doDownload(QString chanel)
 {
+
     manager = new QNetworkAccessManager(this);
 
     connect(manager, SIGNAL(finished(QNetworkReply*)),
             this, SLOT(replyFinished(QNetworkReply*)));
 
-    manager->get(QNetworkRequest(QUrl("http://www.filmweb.pl/program-tv/" + channel)));
-    return htmlContent;
+    manager->get(QNetworkRequest(QUrl("http://www.filmweb.pl/program-tv/" + chanel)));
 }
 
 void Downloader::replyFinished (QNetworkReply *reply)
@@ -31,6 +31,11 @@ void Downloader::replyFinished (QNetworkReply *reply)
 
     reply->deleteLater();
     emit finished();
+}
+
+QString Downloader::getChannel() const
+{
+    return channel;
 }
 
 QString Downloader::getHtmlContent() const

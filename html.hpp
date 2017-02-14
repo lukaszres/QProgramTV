@@ -9,11 +9,11 @@ public:
     std::vector<Film> findMarks(QString &htmlContent);
     void removeEntity(QString &arg);
 
-    const std::string& getChannel() const {
+    const QString& getChannel() const {
 		return channel;
 	}
 
-    void setChannel(const std::string & channel) {
+    void setChannel(const QString & channel) {
 		this->channel = channel;
 	}
 
@@ -51,7 +51,7 @@ public:
 
 private:
     std::string file;
-    std::string channel;
+    QString channel;
     std::string url;
     std::string command;
     QString date;

@@ -16,9 +16,11 @@ class Downloader : public QObject
 public:
     explicit Downloader(QObject *parent = 0);
 
-    QString doDownload(QString channel);
+    void doDownload(QString channel);
 
     QString getHtmlContent() const;
+
+    QString getChannel() const;
 
 signals:
     void finished();
@@ -29,6 +31,7 @@ public slots:
 private:
    QNetworkAccessManager *manager;
    QString htmlContent;
+   QString channel;
 };
 
 #endif // DOWNLOADER_H

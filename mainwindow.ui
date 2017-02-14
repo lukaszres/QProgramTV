@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>539</width>
+    <width>572</width>
     <height>365</height>
    </rect>
   </property>
@@ -64,7 +64,7 @@ p, li { white-space: pre-wrap; }
           <widget class="QComboBox" name="comboBox">
            <property name="geometry">
             <rect>
-             <x>15</x>
+             <x>10</x>
              <y>20</y>
              <width>250</width>
              <height>20</height>
@@ -93,9 +93,12 @@ p, li { white-space: pre-wrap; }
            </property>
           </widget>
           <widget class="QComboBox" name="comboBox_2">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
            <property name="geometry">
             <rect>
-             <x>270</x>
+             <x>265</x>
              <y>20</y>
              <width>150</width>
              <height>20</height>
@@ -140,6 +143,19 @@ p, li { white-space: pre-wrap; }
             <string/>
            </property>
           </widget>
+          <widget class="QCheckBox" name="checkBox">
+           <property name="geometry">
+            <rect>
+             <x>425</x>
+             <y>20</y>
+             <width>101</width>
+             <height>17</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Ulubione kanały</string>
+           </property>
+          </widget>
          </widget>
         </item>
        </layout>
@@ -150,7 +166,7 @@ p, li { white-space: pre-wrap; }
          <normaloff>../build-QProgramTV-Desktop_Qt_5_8_0_MSVC2015_32bit-Release/release/img/multiChannel.png</normaloff>../build-QProgramTV-Desktop_Qt_5_8_0_MSVC2015_32bit-Release/release/img/multiChannel.png</iconset>
        </attribute>
        <attribute name="title">
-        <string>Wiele kanałów</string>
+        <string>Ulubione kanały</string>
        </attribute>
        <widget class="QGroupBox" name="groupBox_2">
         <property name="geometry">
@@ -167,9 +183,9 @@ p, li { white-space: pre-wrap; }
         <widget class="QComboBox" name="comboBox_3">
          <property name="geometry">
           <rect>
-           <x>20</x>
+           <x>15</x>
            <y>30</y>
-           <width>100</width>
+           <width>105</width>
            <height>22</height>
           </rect>
          </property>
@@ -177,9 +193,9 @@ p, li { white-space: pre-wrap; }
         <widget class="QComboBox" name="comboBox_4">
          <property name="geometry">
           <rect>
-           <x>20</x>
+           <x>15</x>
            <y>60</y>
-           <width>100</width>
+           <width>105</width>
            <height>22</height>
           </rect>
          </property>
@@ -187,11 +203,24 @@ p, li { white-space: pre-wrap; }
         <widget class="QComboBox" name="comboBox_5">
          <property name="geometry">
           <rect>
-           <x>20</x>
+           <x>15</x>
            <y>90</y>
-           <width>100</width>
+           <width>105</width>
            <height>22</height>
           </rect>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton">
+         <property name="geometry">
+          <rect>
+           <x>15</x>
+           <y>200</y>
+           <width>75</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Zapisz</string>
          </property>
         </widget>
        </widget>
@@ -205,13 +234,13 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>539</width>
+     <width>572</width>
      <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuWersja_1_0">
     <property name="title">
-     <string>Wersja 1.1</string>
+     <string>Wersja 1.2</string>
     </property>
    </widget>
    <addaction name="menuWersja_1_0"/>
