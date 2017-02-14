@@ -232,6 +232,8 @@ void MainWindow::on_pushButton_clicked()
     out<<ui->comboBox_4->currentIndex()<<"\n";
     out<<ui->comboBox_5->currentIndex()<<"\n";
 
+    setFavoritesChannels();
+
     file.flush();
     file.close();
 }
