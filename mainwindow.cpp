@@ -110,7 +110,7 @@ void MainWindow::doDownload_Finished_MultiChannel()
     {
         films.push_back(filmsBuf[i]);
     }
-    sortByTime(films, 0, films.size() - 1);
+    sortByTime(films);
 
     QString labelText = "Wszystkich filmów: " + QString::number(films.size());
     ui->label->setText(labelText);
@@ -180,38 +180,10 @@ void MainWindow::createChannels()
     channelsList.push_back("Cinemax+2");
 }
 
-int MainWindow::partition (std::vector <Film> & films, int p, int r)
+void MainWindow::sortByTime(std::vector <Film> & films)
 {
-    QString x = films[p].getTime();
-    int i = p, j = r;
-    while(true)
-    {
-        while (films[j].getTime() > x)
-            j--;
-        while (films[i].getTime() < x)
-            i++;
-        if (i<j)
-        {
-            Film bufor = films[i];
-            films[i] = films[j];
-            films[j] = bufor;
-            i++;
-            j--;
-        }
-        else
-            return j;
-    }
-}
-
-void MainWindow::sortByTime(std::vector <Film> & films, int p, int r)
-{
-    int q;
-    if ( p < r )
-    {
-        q = partition(films, p, r);
-        sortByTime(films, p, q);
-        sortByTime(films, q+1, r);
-    }
+    std::sort(std::begin(films), std::end(films),
+              [](const Film& left, const Film& right) { return left.getTime() < right.getTime(); });
 }
 
 void MainWindow::on_pushButtonSave_clicked()

@@ -32,8 +32,7 @@ signals:
 private slots:
     void doDownload_Finished();
     void doDownload_Finished_MultiChannel();
-    void sortByTime(std::vector<Film> &films, int p, int r);
-    int partition(std::vector<Film> &films, int p, int r);
+    void sortByTime(std::vector<Film> &films);
 
     void on_comboBox_currentIndexChanged(const QString &genre);
 
