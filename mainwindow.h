@@ -30,8 +30,7 @@ signals:
     void finished();
 
 private slots:
-    void doDownload_Finished();
-    void doDownload_Finished_MultiChannel();
+    void doDownload_Finished(bool multiChannel);
     void sortByTime(std::vector<Film> &films);
 
     void on_comboBox_currentIndexChanged(const QString &genre);

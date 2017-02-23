@@ -42,7 +42,7 @@ void MainWindow::on_comboBox_currentIndexChanged(const QString &genre)
 void MainWindow::on_comboBox_2_currentIndexChanged(const QString &arg1)
 {
     disconnect(d, &Downloader::finished, this, 0);
-    connect(d, &Downloader::finished, this, &MainWindow::doDownload_Finished);
+    connect(d, &Downloader::finished, this, [=](){this->doDownload_Finished(false);});
     ui->label_2->setText("Proszę czekać...");
     currentChannel = arg1;
     d->doDownload(currentChannel);
@@ -54,10 +54,10 @@ void MainWindow::on_checkBox_toggled(bool checked)
     {
         ui->comboBox_2->setEnabled(false);
         disconnect(d, &Downloader::finished, this, 0);
-        connect(d, &Downloader::finished, this, &MainWindow::doDownload_Finished_MultiChannel);
+        connect(d, &Downloader::finished, this, [=](){this->doDownload_Finished(true);});
 
         genreList.clear();
-        textBrowserContent = "";
+        textBrowserContent.clear();
 
         films.clear();
 
@@ -77,56 +77,39 @@ void MainWindow::on_checkBox_toggled(bool checked)
     }
 }
 
-void MainWindow::doDownload_Finished()
+void MainWindow::doDownload_Finished(bool multiChannel)
 {
     QString htmlContent = d->getHtmlContent();
-
     HTML html;
     html.setDate(QString::fromStdString(getDate()));
     html.setChannel(currentChannel);
-    films = html.findMarks(htmlContent);
-    createFilms(films);
-
-    QString labelText = "Wszystkich filmów: " + QString::number(films.size());
-    ui->label->setText(labelText);
-
-    ui->comboBox->clear();
-    ui->comboBox->addItem("Wszystkie");
-    for (unsigned int i=0; i<genreList.size(); i++){
-        ui->comboBox->addItem(genreList[i]);
-    }
-}
-
-void MainWindow::doDownload_Finished_MultiChannel()
-{
-    QString htmlContent = d->getHtmlContent();
-
-    HTML html;
-    html.setDate(QString::fromStdString(getDate()));
-    html.setChannel(currentChannel);
-    std::vector <Film> filmsBuf;
-    filmsBuf = html.findMarks(htmlContent);
-    for (unsigned int i = 0; i<filmsBuf.size(); i++)
+    if (multiChannel)
     {
-        films.push_back(filmsBuf[i]);
+        std::vector <Film> filmsBuf;
+        filmsBuf = html.findMarks(htmlContent);
+        for (unsigned int i = 0; i<filmsBuf.size(); i++)
+        {
+            films.push_back(filmsBuf[i]);
+        }
+        sortByTime(films);
+    }else
+    {
+        films = html.findMarks(htmlContent);
+        createFilms(films);
     }
-    sortByTime(films);
-
     QString labelText = "Wszystkich filmów: " + QString::number(films.size());
     ui->label->setText(labelText);
-
     ui->comboBox->clear();
     ui->comboBox->addItem("Wszystkie");
     for (unsigned int i=0; i<genreList.size(); i++){
         ui->comboBox->addItem(genreList[i]);
     }
-
     emit finished();
 }
 
 void MainWindow::createFilms(std::vector <Film> films){
     genreList.clear();
-    textBrowserContent = "";
+    textBrowserContent.clear();
     for (unsigned int i = 0; i< films.size(); i++){
         textBrowserContent =  textBrowserContent + films[i].getTime() + " :: " + films[i].getChannel() + " :: "
                 + films[i].getGenre() + films[i].getGenreSuffix() + " :: " + films[i].getTitle() + "\n";
