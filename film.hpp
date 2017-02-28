@@ -2,11 +2,11 @@
 #ifndef FILM_H
 #define FILM_H
 #include <QString>
+#include <QDateTime>
 
 class Film{
 public:
-    Film(QString time, QString channel, QString genre, QString title);
-    Film(QString time, QString channel, QString genre, QString title, QString genreSuffix);
+    Film(QString channel, QString genre, QString title, QString genreSuffix, QDateTime dateTime);
 
     const QString& getGenre() const {
 		return genre;
@@ -14,10 +14,6 @@ public:
     const QString& getGenreSuffix() const {
         return genreSuffix;
     }
-
-    const QString& getTime() const {
-		return time;
-	}
 
     const QString& getTitle() const {
 		return title;
@@ -27,11 +23,18 @@ public:
 		return channel;
     }
 
+    QString getDate() const;
+    void setDate(const QString &value);
+
+    QDateTime getDateTime() const {
+        return dateTime;
+    }
+
 private:
-    QString time;
     QString channel;
     QString genre;
     QString genreSuffix;
     QString title;
+    QDateTime dateTime;
 };
 #endif // FILM_H

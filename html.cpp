@@ -53,7 +53,10 @@ std::vector<Film> HTML::findMarks(QString & htmlContent)
 
         pos += rx.matchedLength();
 
-        Film film(hour, channel, genre, title, genreSuffix);
+        QDateTime dateTime = getQdat();
+        dateTime.setTime(QTime::fromString(hour, "hh:mm"));
+
+        Film film(channel, genre, title, genreSuffix, dateTime);
         films.push_back(film);
     }
     return films;
@@ -70,4 +73,5 @@ void HTML::removeEntity(QString& arg)
     arg.replace("&ouml;", "ö");
     arg.replace("&szlig;", "ß");
     arg.replace("&uacute;", "ú");
+    arg.replace("&eacute;", "é");
 }

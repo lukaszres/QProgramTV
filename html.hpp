@@ -1,6 +1,7 @@
 #pragma once
 #ifndef HTTP_H
 #define HTTP_H
+#include <QDateTime>
 #include "film.hpp"
 
 class HTML{
@@ -49,11 +50,20 @@ public:
         return this->date;
     }
 
+    void setQdat (const QDateTime & qdat) {
+        this->qdat = qdat;
+    }
+
+     QDateTime & getQdat() {
+        return this->qdat;
+    }
+
 private:
     std::string file;
     QString channel;
     std::string url;
     std::string command;
     QString date;
+    QDateTime qdat;
 };
 #endif // HTTP_H
