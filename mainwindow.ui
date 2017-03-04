@@ -377,7 +377,7 @@ p, li { white-space: pre-wrap; }
    </property>
    <widget class="QMenu" name="menuWersja_1_0">
     <property name="title">
-     <string>Wersja 1.4</string>
+     <string>Wersja 2.0</string>
     </property>
    </widget>
    <addaction name="menuWersja_1_0"/>

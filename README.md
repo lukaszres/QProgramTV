@@ -8,7 +8,3 @@ To run, program needs to Visual C++ Redistributable for Visual Studio 2015: http
 Package of DLLs for Windows 32bit: https://drive.google.com/open?id=0B5Gk4L-OLGR5LTQtNTl4a3RURkE
 
 Compiled file for Windows 32bit: https://drive.google.com/open?id=0B5Gk4L-OLGR5X2xSZ21tNkV5bm8
-
-Sample of setup file: https://drive.google.com/open?id=0B5Gk4L-OLGR5d2F0bkN1UmtJYnM
-
-Sample of channels list file: https://drive.google.com/open?id=0B5Gk4L-OLGR5emszYmdjTkdRUFU
