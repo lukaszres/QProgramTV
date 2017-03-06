@@ -10,9 +10,11 @@
 #include <QStringListModel>
 #include <QSortFilterProxyModel>
 #include <QFile>
-//mają być najpierw pobierane wszystkie kanały, potem sortowane, potem wyświetlane!
-//Zamiast combo stworzyc listview z mozliwoscią multidodawania kanałów do fav.
-//podczas sortowania listy fav wyskakuje błąd: QSortFilterProxyModel: index from wrong model passed to mapToSource
+#include <QMessageBox>
+//-Create listview with selectionMode: ExtendedSelection instead comboBox to show channels it can be added to favourites
+//-Sometimes, while do some operations on favourite channels(adding/removing) this error ocure:
+//                          QSortFilterProxyModel: index from wrong model passed to mapToSource
+//-Create adding to all channels editor
 
 
 namespace Ui {
@@ -26,7 +28,9 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void createFilms(std::vector <Film> films);
+    void createTextFromFilms(std::vector <Film> films);
+    void createAllGenres();
+    void showLeftGenres();
     void createComboBoxGenre(QComboBox *combobox);
 
     QString removeEntity(QString str);
@@ -56,25 +60,21 @@ public:
 
     void saveFavChannelsToFile(QFile &file);
 
+    void addAndSortToGenresChoosed();
+    void showChoosedGenres();
+    void removeChoosedFromLeftGenres();
+
+    void addAndSortToGenresLeft();
+    void removeLeftFromChoosedGenres();
+
+    void createFilmsByGenre();
+
 signals:
     void finished();
 
 private slots:
     void doDownload_Finished();
 
-    void on_checkBox_toggled(bool checked);
-
-    void on_comboBox_Genre_Main_currentIndexChanged(const QString &genre);
-    void on_comboBox_Genre_1_currentIndexChanged(const QString &arg1);
-    void on_comboBox_Genre_2_currentIndexChanged(const QString &arg1);
-    void on_comboBox_Genre_3_currentIndexChanged(const QString &arg1);
-    void on_comboBox_Genre_4_currentIndexChanged(const QString &arg1);
-    void on_comboBox_Genre_5_currentIndexChanged(const QString &arg1);
-    void on_comboBox_Genre_6_currentIndexChanged(const QString &arg1);
-    void on_comboBox_Genre_7_currentIndexChanged(const QString &arg1);
-    void on_comboBox_Genre_8_currentIndexChanged(const QString &arg1);
-
-    void on_comboBox_2_currentIndexChanged(const QString &currentChannel);
 
     void on_pushButtonClear_clicked();
     void on_pushButtonAdd_clicked();
@@ -83,6 +83,15 @@ private slots:
     void on_pushButtonSaveFavourites_clicked();
     void on_pushButtonLoadFavourites_clicked();
 
+    void on_pushButton_Start_clicked();
+
+    void on_pushButton_AddGenres_clicked();
+    void on_pushButton_RemoveGenres_clicked();
+
+    void on_pushButton_AddAllGenres_clicked();
+
+    void on_pushButton_RemoveAllGenres_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString textBrowserContent;
@@ -90,15 +99,19 @@ private:
 
     std::vector<Film> films;
     std::vector <Film> filmsByGenre;
-    std::vector<QString> genreList;
+    QStringList genreList;
+    QStringList genreLeft;
+    QStringList genreChoosed;
     QString fileFavouritesChannels = "setup.txt";
     QString fileAllChannels = "channels.txt";
-    QVector<QString> channels;
+    QVector<QString> allChannels;
 
     const QString selectChannel = "Wybierz kanał";
     QStringListModel *model;
     QStringList favouriteChannels;
     QStringList savedFavChannels;
+    QMessageBox messageBox;
+    QMessageBox messageBoxOnLoad;
 };
 
 #endif // MAINWINDOW_H

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>572</width>
-    <height>638</height>
+    <width>597</width>
+    <height>503</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../Desktop/cinema-slate_318-1957.jpg</normaloff>../../Desktop/cinema-slate_318-1957.jpg</iconset>
+    <normaloff>img/main.png</normaloff>img/main.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="enabled">
@@ -25,205 +25,20 @@
     <item row="1" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
+       <property name="inputMethodHints">
+        <set>Qt::ImhNone</set>
+       </property>
        <attribute name="icon">
         <iconset>
-         <normaloff>../build-QProgramTV-Desktop_Qt_5_8_0_MSVC2015_32bit-Release/release/img/singleChannel.png</normaloff>../build-QProgramTV-Desktop_Qt_5_8_0_MSVC2015_32bit-Release/release/img/singleChannel.png</iconset>
+         <normaloff>img/singleChannel.png</normaloff>img/singleChannel.png</iconset>
        </attribute>
        <attribute name="title">
         <string>Spis filmów</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="1" column="0">
-         <widget class="QGroupBox" name="groupBox">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>220</height>
-           </size>
-          </property>
-          <property name="title">
-           <string>Wybierz gatunek i kanał</string>
-          </property>
-          <widget class="QComboBox" name="comboBox_Genre_Main">
-           <property name="geometry">
-            <rect>
-             <x>10</x>
-             <y>20</y>
-             <width>250</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>250</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>250</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="whatsThis">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Gatunki filmów&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-          </widget>
-          <widget class="QComboBox" name="comboBox_2">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="geometry">
-            <rect>
-             <x>265</x>
-             <y>20</y>
-             <width>150</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>150</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>150</width>
-             <height>16777215</height>
-            </size>
-           </property>
-          </widget>
-          <widget class="QLabel" name="label">
-           <property name="geometry">
-            <rect>
-             <x>5</x>
-             <y>180</y>
-             <width>170</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>Wszystkich filmów:</string>
-           </property>
-          </widget>
-          <widget class="QLabel" name="label_2">
-           <property name="geometry">
-            <rect>
-             <x>5</x>
-             <y>160</y>
-             <width>170</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkBox">
-           <property name="geometry">
-            <rect>
-             <x>425</x>
-             <y>20</y>
-             <width>101</width>
-             <height>17</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>Ulubione kanały</string>
-           </property>
-          </widget>
-          <widget class="QComboBox" name="comboBox_Genre_1">
-           <property name="geometry">
-            <rect>
-             <x>10</x>
-             <y>50</y>
-             <width>250</width>
-             <height>20</height>
-            </rect>
-           </property>
-          </widget>
-          <widget class="QComboBox" name="comboBox_Genre_2">
-           <property name="geometry">
-            <rect>
-             <x>10</x>
-             <y>80</y>
-             <width>250</width>
-             <height>20</height>
-            </rect>
-           </property>
-          </widget>
-          <widget class="QComboBox" name="comboBox_Genre_3">
-           <property name="geometry">
-            <rect>
-             <x>10</x>
-             <y>110</y>
-             <width>250</width>
-             <height>20</height>
-            </rect>
-           </property>
-          </widget>
-          <widget class="QComboBox" name="comboBox_Genre_4">
-           <property name="geometry">
-            <rect>
-             <x>10</x>
-             <y>140</y>
-             <width>250</width>
-             <height>20</height>
-            </rect>
-           </property>
-          </widget>
-          <widget class="QComboBox" name="comboBox_Genre_5">
-           <property name="geometry">
-            <rect>
-             <x>265</x>
-             <y>50</y>
-             <width>250</width>
-             <height>20</height>
-            </rect>
-           </property>
-          </widget>
-          <widget class="QComboBox" name="comboBox_Genre_6">
-           <property name="geometry">
-            <rect>
-             <x>265</x>
-             <y>80</y>
-             <width>250</width>
-             <height>20</height>
-            </rect>
-           </property>
-          </widget>
-          <widget class="QComboBox" name="comboBox_Genre_7">
-           <property name="geometry">
-            <rect>
-             <x>265</x>
-             <y>110</y>
-             <width>250</width>
-             <height>20</height>
-            </rect>
-           </property>
-          </widget>
-          <widget class="QComboBox" name="comboBox_Genre_8">
-           <property name="geometry">
-            <rect>
-             <x>265</x>
-             <y>140</y>
-             <width>250</width>
-             <height>20</height>
-            </rect>
-           </property>
-          </widget>
-         </widget>
-        </item>
         <item row="0" column="0">
          <widget class="QTextBrowser" name="textBrowser">
           <property name="sizePolicy">
@@ -241,12 +56,174 @@ p, li { white-space: pre-wrap; }
           </property>
          </widget>
         </item>
+        <item row="1" column="0">
+         <widget class="QGroupBox" name="groupBox">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>223</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>Wybierz gatunek i kanał</string>
+          </property>
+          <widget class="QLabel" name="label">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>204</y>
+             <width>170</width>
+             <height>20</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Wszystkich filmów:</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_2">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>190</y>
+             <width>541</width>
+             <height>20</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="pushButton_Start">
+           <property name="geometry">
+            <rect>
+             <x>210</x>
+             <y>15</y>
+             <width>141</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Start</string>
+           </property>
+          </widget>
+          <widget class="QListView" name="listView_ChoosedGenres">
+           <property name="geometry">
+            <rect>
+             <x>50</x>
+             <y>60</y>
+             <width>181</width>
+             <height>131</height>
+            </rect>
+           </property>
+           <property name="editTriggers">
+            <set>QAbstractItemView::NoEditTriggers</set>
+           </property>
+           <property name="selectionMode">
+            <enum>QAbstractItemView::ExtendedSelection</enum>
+           </property>
+          </widget>
+          <widget class="QListView" name="listView_LeftGenres">
+           <property name="geometry">
+            <rect>
+             <x>330</x>
+             <y>60</y>
+             <width>181</width>
+             <height>131</height>
+            </rect>
+           </property>
+           <property name="editTriggers">
+            <set>QAbstractItemView::NoEditTriggers</set>
+           </property>
+           <property name="selectionMode">
+            <enum>QAbstractItemView::ExtendedSelection</enum>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="pushButton_AddGenres">
+           <property name="geometry">
+            <rect>
+             <x>240</x>
+             <y>100</y>
+             <width>80</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>&lt;--</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="pushButton_RemoveGenres">
+           <property name="geometry">
+            <rect>
+             <x>240</x>
+             <y>130</y>
+             <width>80</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>--&gt;</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="pushButton_AddAllGenres">
+           <property name="geometry">
+            <rect>
+             <x>240</x>
+             <y>70</y>
+             <width>80</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>&lt;-- wszystkie</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="pushButton_RemoveAllGenres">
+           <property name="geometry">
+            <rect>
+             <x>240</x>
+             <y>160</y>
+             <width>80</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>wszystkie --&gt;</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_3">
+           <property name="geometry">
+            <rect>
+             <x>100</x>
+             <y>40</y>
+             <width>91</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Wybrane gatunki:</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_4">
+           <property name="geometry">
+            <rect>
+             <x>380</x>
+             <y>40</y>
+             <width>91</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Dostępne gatunki:</string>
+           </property>
+          </widget>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tab_5">
        <attribute name="icon">
         <iconset>
-         <normaloff>../build-QProgramTV-Desktop_Qt_5_8_0_MSVC2015_32bit-Release/release/img/multiChannel.png</normaloff>../build-QProgramTV-Desktop_Qt_5_8_0_MSVC2015_32bit-Release/release/img/multiChannel.png</iconset>
+         <normaloff>img/multiChannel.png</normaloff>img/multiChannel.png</iconset>
        </attribute>
        <attribute name="title">
         <string>Ulubione</string>
@@ -371,13 +348,13 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>572</width>
+     <width>597</width>
      <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuWersja_1_0">
     <property name="title">
-     <string>Wersja 2.0</string>
+     <string>Wersja 2.1</string>
     </property>
    </widget>
    <addaction name="menuWersja_1_0"/>

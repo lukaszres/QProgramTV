@@ -54,7 +54,7 @@ public:
         this->qdat = qdat;
     }
 
-     QDateTime & getQdat() {
+    QDateTime & getQdat() {
         return this->qdat;
     }
 
