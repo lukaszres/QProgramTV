@@ -8,34 +8,33 @@ class Channels
 public:
     Channels();
 
+    void setFileAllChannels(QString &file);
     void createAndSortAllChannels();
-    void generateAllChannels();
     void createAllChannelsFromFile(QFile &file);
+    void generateAllChannels();
+    QString getChannelFromAllChannels(int i);
+    int allChannelsSize();
 
+    void setFileFavouritesChannels(QString &file);
     void createFavChannels();
     void createFavoritesChannelsFromFile(QFile &file);
     void sortFavChannels();
-    void sortLeftChannels();
-
-    void setFileAllChannels(QString &file);
-    void setFileFavouritesChannels(QString &file);
-    int allChannelsSize();
-
     int favouriteChannelsSize();
     void favouriteChannelsPushBack(QString channel);
     void favouriteChannelsClear();
-
-    QString getChannelFromAllChannels(int i);
     QString getChannellFromFavouriteChannels(int i);
     QStringList getFavouriteChannels();
-    QStringList getLeftChannels();
-    void setLeftChannelsToAll();
-
-    void leftChannelsPushBack(QString channel);
     void removeFromFavouritesChannels(int i);
+
+    void sortLeftChannels();
     int leftChannelsSize();
+    void leftChannelsPushBack(QString channel);
+    QStringList getLeftChannels();
     void removeFromLeftChannels(int i);
     void removeFromLeftChannels(QString channel);
+
+    void setLeftChannelsToAll();
+
 private:
     QString fileAllChannels;
     QVector<QString> allChannels;

@@ -18,7 +18,6 @@ MainWindow::MainWindow(QWidget *parent) :
     channels->setFileFavouritesChannels(fileFavouritesChannels);
     channels->createAndSortAllChannels();
 
-//    createAndSortAllChannels();
     initFavAndLeftChannels();
     connect(d, &Downloader::finished, this, &MainWindow::doDownload_Finished);
 
@@ -122,49 +121,16 @@ void MainWindow::createFilmsByGenre()
 
 
 
-void MainWindow::createAndSortAllChannels()
-{
-    QFile file (fileAllChannels);
-    if (!file.open(QFile::ReadOnly | QFile::Text))
-    {
-        generateAllChannels();
-    }
-    else
-    {
-        createAllChannelsFromFile(file);
-    }
-    qSort(allChannels.begin(), allChannels.end(),
-          [](const QString &a, QString &b){return a.toLower() < b.toLower();});
-}
 
-void MainWindow::generateAllChannels()
-{
-    qDebug()<<"Cannot open file";
-    allChannels.push_back("TVP+1");
-    allChannels.push_back("TVP+2");
-}
 
-void MainWindow::createAllChannelsFromFile(QFile &file)
-{
-    QTextStream in(&file);
-    while (!in.atEnd())
-    {
-        QString line = in.readLine();
-        allChannels.push_back(line);
-    }
-}
 
 void MainWindow::initFavAndLeftChannels()
 {
-//    createFavChannels();
     channels->createFavChannels();
-    //skopiowac AllChannels to leftChannels
     channels->setLeftChannelsToAll();
-//    showLeftChannels();
     showSortedFavChannels();
     removeChannelsFromLeftChannels();
     showLeftChannels();
-    setSavedFavChannels();
     showNumberOfFavChannelsAndLeftChannels();
 }
 
@@ -172,40 +138,11 @@ void MainWindow::showLeftChannels()
 {
     ui->comboBoxRemained->clear();
     ui->comboBoxRemained->addItems(channels->getLeftChannels());
-
-//    ui->comboBoxRemained->clear();
-//    for (int i=0; i<allChannels.size(); i++)
-//    {
-//        ui->comboBoxRemained->addItem(allChannels[i]);
-//    }
-}
-
-void MainWindow::createFavChannels()
-{
-    QFile file (fileFavouritesChannels);
-    if (file.open(QFile::ReadOnly | QFile::Text))
-    {
-        favouriteChannels.clear();
-        createFavoritesChannelsFromFile(file);
-    }
-    file.close();
-}
-
-void MainWindow::createFavoritesChannelsFromFile(QFile& file)
-{
-    QTextStream in(&file);
-    while (!in.atEnd())
-    {
-        QString line = in.readLine();
-        if(allChannels.indexOf(line) != -1)
-            favouriteChannels.push_back(line);
-    }
 }
 
 void MainWindow::showSortedFavChannels()
 {
     channels->sortFavChannels();
-//    sortFavChannels();
     showFavChannels();
 }
 
@@ -219,7 +156,6 @@ void MainWindow::showFavChannels()
 {
     model = new QStringListModel(this);
     model->setStringList(channels->getFavouriteChannels());
-//    model->setStringList(favouriteChannels);
     ui->listView->setModel(model);
 }
 
@@ -228,24 +164,12 @@ void MainWindow::removeChannelsFromLeftChannels()
 
     for (int i=0; i<channels->favouriteChannelsSize(); i++)
     {
-//        ui->comboBoxRemained->removeItem(ui->comboBoxRemained->findText(channels->getChannellFromFavouriteChannels(i)));
         channels->removeFromLeftChannels(channels->getChannellFromFavouriteChannels(i));
     }
-//    for (int i=0; i<favouriteChannels.size(); i++)
-//    {
-//        ui->comboBoxRemained->removeItem(ui->comboBoxRemained->findText(favouriteChannels[i]));
-//    }
-}
-
-void MainWindow::setSavedFavChannels()
-//Chyba ta funkcja jest niepotrzebna
-{
-//    savedFavChannels = favouriteChannels;
 }
 
 void MainWindow::showNumberOfFavChannelsAndLeftChannels()
 {
-//    int c = allChannels.size(), f = favouriteChannels.size();
     int c = channels->allChannelsSize(), f = channels->favouriteChannelsSize();
     ui->label_numberOfFavLeftChannels->setText(
                 "Wszystkich kanałów: " + QString::number(c) + ", "
@@ -296,7 +220,6 @@ void MainWindow::addChannelToFav()
     if (ui->comboBoxRemained->currentText() != "")
     {
         channels->favouriteChannelsPushBack(ui->comboBoxRemained->currentText());
-//        favouriteChannels<<ui->comboBoxRemained->currentText();
     }
 }
 
@@ -318,13 +241,10 @@ void MainWindow::addChannelsLeft()
     {
         for(int i=0; i<selected.size(); i++)
         {
-//            ui->comboBoxRemained->addItem(selected[i].data().toString());
             channels->leftChannelsPushBack(selected[i].data().toString());
         }
     }
     channels->sortLeftChannels();
-//    sortComboBoxChannelLeft();
-
 }
 
 void MainWindow::sortComboBoxChannelLeft()
@@ -345,10 +265,8 @@ void MainWindow::removeChannelsFromFavourite()
         for (int i=0; i<selected.size(); i++)
         {
             channels->removeFromFavouritesChannels(selected.at(i).row()-i);
-//            favouriteChannels.removeAt(selected.at(i).row()-i);
         }
         ((QStringListModel*) ui->listView->model())->setStringList(channels->getFavouriteChannels());
-//        ((QStringListModel*) ui->listView->model())->setStringList(favouriteChannels);
     }
 }
 
@@ -372,7 +290,6 @@ void MainWindow::on_pushButtonSaveFavourites_clicked()
         {
             saveFavChannelsToFile(file);
         }
-//        setSavedFavChannels();
     }
 }
 

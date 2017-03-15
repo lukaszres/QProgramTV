@@ -38,18 +38,13 @@ public:
     void sortByTime(std::vector<Film> &films);
     Downloader *d = new Downloader();
 
-    void createAndSortAllChannels();
-        void generateAllChannels();
-        void createAllChannelsFromFile(QFile &file);
+
     void initFavAndLeftChannels();
-        void createFavChannels();
         void showLeftChannels();
-            void createFavoritesChannelsFromFile(QFile &file);
         void showSortedFavChannels();
             void sortFavChannels();
             void showFavChannels();
             void removeChannelsFromLeftChannels();
-        void setSavedFavChannels();
         void showNumberOfFavChannelsAndLeftChannels();
 
     void addChannelsLeft();
