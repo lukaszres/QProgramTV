@@ -28,12 +28,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     downloader.cpp \
     film.cpp \
-    html.cpp
+    html.cpp \
+    channels.cpp
 
 HEADERS  += mainwindow.h \
     downloader.h \
     film.hpp \
-    html.hpp
+    html.hpp \
+    channels.h
 
 FORMS    += mainwindow.ui
 

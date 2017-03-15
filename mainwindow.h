@@ -6,6 +6,7 @@
 #include <QComboBox>
 #include "downloader.h"
 #include "film.hpp"
+#include "channels.h"
 
 #include <QStringListModel>
 #include <QSortFilterProxyModel>
@@ -42,7 +43,7 @@ public:
         void createAllChannelsFromFile(QFile &file);
     void initFavAndLeftChannels();
         void createFavChannels();
-        void createChannelsLeft();
+        void showLeftChannels();
             void createFavoritesChannelsFromFile(QFile &file);
         void showSortedFavChannels();
             void sortFavChannels();
@@ -94,6 +95,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    Channels *channels = new Channels();
     QString textBrowserContent;
     QString currentChannel;
 
