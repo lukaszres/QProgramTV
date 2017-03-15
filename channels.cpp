@@ -8,142 +8,76 @@ Channels::Channels(){
 
 }
 
-void Channels::createAndSortAllChannels(){
-    QFile file (fileAllChannels);
+void Channels::create(){
+    QFile file (this->fileName);
     if (!file.open(QFile::ReadOnly | QFile::Text)){
-        generateAllChannels();
+        generate();
     }
     else{
-        createAllChannelsFromFile(file);
+        createFromFile(file);
     }
-    qSort(allChannels.begin(), allChannels.end(),
-          [](const QString &a, QString &b){return a.toLower() < b.toLower();});
-}
-void Channels::generateAllChannels(){
-    qDebug()<<"Channels: Cannot open file";
-    allChannels.push_back("TVP+1");
-    allChannels.push_back("TVP+2");
 }
 
-void Channels::createAllChannelsFromFile(QFile &file){
+void Channels::generate(){
+    qDebug()<<"Channels: Cannot open file"<<this->fileName;
+    channels.push_back("TVP+1");
+    channels.push_back("TVP+2");
+}
+
+void Channels::createFromFile(QFile &file){
     QTextStream in(&file);
     while (!in.atEnd()){
         QString line = in.readLine();
-        allChannels.push_back(line);
+        this->channels.push_back(line);
     }
 }
 
-void Channels::createFavChannels(){
-    QFile file (fileFavouritesChannels);
-    if (file.open(QFile::ReadOnly | QFile::Text))
-    {
-        favouriteChannels.clear();
-        createFavoritesChannelsFromFile(file);
-    }
-    file.close();
-}
-
-void Channels::createFavoritesChannelsFromFile(QFile &file){
-    QTextStream in(&file);
-    while (!in.atEnd())
-    {
-        QString line = in.readLine();
-        if(allChannels.indexOf(line) != -1)
-            favouriteChannels.push_back(line);
-    }
-}
-
-void Channels::sortFavChannels()
+void Channels::sort()
 {
-    qSort(favouriteChannels.begin(), favouriteChannels.end(),
+    qSort(channels.begin(), channels.end(),
           [](const QString &a, const QString &b){return a.toLower() < b.toLower();});
 }
 
-void Channels::sortLeftChannels()
+void Channels::setFileName(QString &file){
+    this->fileName = file;
+}
+
+int Channels::size(){
+    return this->channels.size();
+}
+
+QString Channels::get(int i)
 {
-    qSort(leftChannels.begin(), leftChannels.end(),
-          [](const QString &a, const QString &b){return a.toLower() < b.toLower();});
+    return channels[i];
 }
 
-
-void Channels::setFileAllChannels(QString &file){
-    this->fileAllChannels = file;
-}
-
-void Channels::setFileFavouritesChannels(QString &file){
-    this->fileFavouritesChannels = file;
-}
-
-int Channels::allChannelsSize(){
-    return this->allChannels.size();
-}
-
-int Channels::favouriteChannelsSize()
+QStringList Channels::getAll()
 {
-    return favouriteChannels.size();
+    return this->channels;
 }
 
-QString Channels::getChannelFromAllChannels(int i)
+void Channels::pushBack(QString channel)
 {
-    return allChannels[i];
+    this->channels.push_back(channel);
 }
 
-QString Channels::getChannellFromFavouriteChannels(int i)
+void Channels::clear()
 {
-    return favouriteChannels[i];
+    this->channels.clear();
 }
 
-QStringList Channels::getFavouriteChannels()
+void Channels::remove(int i)
 {
-    return this->favouriteChannels;
+    this->channels.removeAt(i);
 }
 
-QStringList Channels::getLeftChannels()
+void Channels::remove(QString channel)
 {
-    return this->leftChannels;
+    int i = this->channels.indexOf(channel);
+    remove(i);
 }
 
-void Channels::setLeftChannelsToAll()
+void Channels::setAll(QStringList channels)
 {
-    leftChannels.clear();
-    for (int i=0; i<this->allChannelsSize(); i++)
-    {
-        leftChannels.push_back(this->allChannels[i]);
-    }
-}
-
-void Channels::favouriteChannelsPushBack(QString channel)
-{
-    this->favouriteChannels.push_back(channel);
-}
-
-void Channels::favouriteChannelsClear()
-{
-    this->favouriteChannels.clear();
-}
-
-void Channels::leftChannelsPushBack(QString channel)
-{
-    this->leftChannels.push_back(channel);
-}
-
-void Channels::removeFromFavouritesChannels(int i)
-{
-    this->favouriteChannels.removeAt(i);
-}
-
-int Channels::leftChannelsSize()
-{
-    return this->leftChannels.size();
-}
-
-void Channels::removeFromLeftChannels(int i)
-{
-    this->leftChannels.removeAt(i);
-}
-
-void Channels::removeFromLeftChannels(QString channel)
-{
-    int i = this->leftChannels.indexOf(channel);
-    removeFromLeftChannels(i);
+    this->channels = channels;
 }

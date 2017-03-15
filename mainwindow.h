@@ -41,9 +41,7 @@ public:
 
     void initFavAndLeftChannels();
         void showLeftChannels();
-        void showSortedFavChannels();
-            void sortFavChannels();
-            void showFavChannels();
+        void showFavChannels();
             void removeChannelsFromLeftChannels();
         void showNumberOfFavChannelsAndLeftChannels();
 
@@ -90,7 +88,9 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Channels *channels = new Channels();
+    Channels *allChannels = new Channels();
+    Channels *favChannels = new Channels();
+    Channels *leftChannels = new Channels();
     QString textBrowserContent;
     QString currentChannel;
 
@@ -101,12 +101,9 @@ private:
     QStringList genreChoosed;
     QString fileFavouritesChannels = "setup.txt";
     QString fileAllChannels = "channels.txt";
-    QVector<QString> allChannels;
 
     const QString selectChannel = "Wybierz kanał";
     QStringListModel *model;
-    QStringList favouriteChannels;
-    QStringList savedFavChannels;
     QMessageBox messageBox;
     QMessageBox messageBoxOnLoad;
 };
