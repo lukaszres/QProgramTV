@@ -1,6 +1,6 @@
 # QProgramTV
 
-A QProgramTV downloads a TV program from a some web site for a chosed channels.
+A QProgramTV downloads a TV program from a some web site for a chosen channels.
 It can show a chosed genres of the film for this channels.
 
 To run, program needs to Visual C++ Redistributable for Visual Studio 2015: https://www.microsoft.com/pl-pl/download/details.aspx?id=48145
