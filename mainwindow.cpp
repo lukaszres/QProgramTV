@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     favChannels->setFileName(fileFavouritesChannels);
 
     initFavAndLeftChannels();
-    connect(d, &Downloader::finished, this, &MainWindow::doDownload_Finished);
+    QObject::connect(d, &Downloader::finished, this, &MainWindow::doDownload_Finished);
 
 }
 
