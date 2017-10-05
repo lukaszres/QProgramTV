@@ -47,7 +47,7 @@ void MainWindow::on_pushButton_Start_clicked()
         d->doDownload(currentChannel);
         QEventLoop loop;
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
-        connect(this, &MainWindow::finished, &loop, &QEventLoop::quit);
+//        connect(this, &MainWindow::finished, &loop, &QEventLoop::quit);
         loop.exec();
     }
     messageBoxOnLoad.hide();
