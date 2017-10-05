@@ -22,7 +22,7 @@ public:
 
     QString getChannel() const;
 
-signals:
+//signals:
     void finished();
 
 public slots:
