@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     initFavAndLeftChannels();
 //    QObject::connect(d, &Downloader::finished, this, &MainWindow::doDownload_Finished);
-    QObject::connect(d, SIGNAL(Downloader::finished()), this, SLOT(MainWindow::doDownload_Finished()));
+    QObject::connect(d, SIGNAL(finished()), this, SLOT(doDownload_Finished()));
 }
 
 MainWindow::~MainWindow()
