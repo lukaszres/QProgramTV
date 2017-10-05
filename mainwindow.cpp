@@ -39,7 +39,6 @@ void MainWindow::on_pushButton_Start_clicked()
     messageBoxOnLoad.show();
 
     for (int i = 0; i< size; i++){
-        qDebug()<<"pętla";
         currentChannel = favChannels->get(i);
         ui->label_2->setText("Proszę czekać... Pozostało " + QString::number(size - i) + " kanałów do pobrania.");
         messageBoxOnLoad.setText("Proszę czekać... Pozostało " + QString::number(size - i) + " kanałów do pobrania.\n"
@@ -273,7 +272,6 @@ void MainWindow::on_pushButtonSaveFavourites_clicked()
         QFile file(fileFavouritesChannels);
         if (!file.open(QFile::WriteOnly | QFile::Text))
         {
-            qDebug()<<"Cannot open file";
             return;
         }
         else
