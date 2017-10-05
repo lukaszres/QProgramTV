@@ -250,7 +250,8 @@ void MainWindow::removeChannelsFromFavourite()
     QModelIndexList selected = ui->listView->selectionModel()->selectedIndexes();
     if(!selected.isEmpty())
     {
-        qSort(selected);
+//        qSort(selected);
+        std::sort(selected.begin(), selected.end());
         for (int i=0; i<selected.size(); i++)
         {
             favChannels->remove(selected.at(i).row()-i);
@@ -326,7 +327,7 @@ void MainWindow::addAndSortToGenresChoosed()
             genreChoosed.push_back(selected[i].data().toString());
         }
     }
-    qSort(genreChoosed.begin(), genreChoosed.end());
+    std::sort(genreChoosed.begin(), genreChoosed.end());
 }
 
 void MainWindow::showChoosedGenres()
@@ -341,7 +342,7 @@ void MainWindow::removeChoosedFromLeftGenres()
     QModelIndexList selected = ui->listView_LeftGenres->selectionModel()->selectedIndexes();
     if(!selected.isEmpty())
     {
-        qSort(selected);
+        std::sort(selected.begin(), selected.end());
         for (int i=0; i<selected.size(); i++)
             genreLeft.removeAt(selected.at(i).row()-i);
         ((QStringListModel*) ui->listView_LeftGenres->model())->setStringList(genreLeft);
@@ -369,7 +370,7 @@ void MainWindow::addAndSortToGenresLeft()
             genreLeft.push_back(selected[i].data().toString());
         }
     }
-    qSort(genreLeft.begin(), genreLeft.end());
+    std::sort(genreLeft.begin(), genreLeft.end());
 }
 
 void MainWindow::removeLeftFromChoosedGenres()
@@ -377,7 +378,7 @@ void MainWindow::removeLeftFromChoosedGenres()
     QModelIndexList selected = ui->listView_ChoosedGenres->selectionModel()->selectedIndexes();
     if(!selected.isEmpty())
     {
-        qSort(selected);
+        std::sort(selected.begin(), selected.end());
         for (int i=0; i<selected.size(); i++)
             genreChoosed.removeAt(selected.at(i).row()-i);
     }

@@ -34,7 +34,7 @@ void Channels::createFromFile(QFile &file){
 
 void Channels::sort()
 {
-    qSort(channels.begin(), channels.end(),
+    std::sort(channels.begin(), channels.end(),
           [](const QString &a, const QString &b){return a.toLower() < b.toLower();});
 }
 

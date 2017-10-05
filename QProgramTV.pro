@@ -29,15 +29,20 @@ SOURCES += main.cpp\
     downloader.cpp \
     film.cpp \
     html.cpp \
-    channels.cpp
+    channels.cpp \
+    versionchecker.cpp
 
 HEADERS  += mainwindow.h \
     downloader.h \
     film.hpp \
     html.hpp \
-    channels.h
+    channels.h \
+    versionchecker.h
 
 FORMS    += mainwindow.ui
 
 DISTFILES += \
     README.md
+
+RESOURCES += \
+    files.qrc
