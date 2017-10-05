@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>channels.txt</file>
+        <file>setup.txt</file>
+    </qresource>
+</RCC>

@@ -406,7 +406,7 @@ void MainWindow::doDownload_Finished()
     {
         html.setDate(QDateTime::currentDateTime().date().addDays(i).toString("yyyy,M,d"));
         qint8 j = i;
-        html.setQdat(QDateTime::QDateTime().currentDateTime().addDays(j));
+        html.setQdat(QDateTime().currentDateTime().addDays(j));
         html.setChannel(currentChannel);
         std::vector <Film> filmsBuf;
         filmsBuf = html.findMarks(htmlContent);

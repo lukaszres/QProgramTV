@@ -12,10 +12,6 @@
 #include <QSortFilterProxyModel>
 #include <QFile>
 #include <QMessageBox>
-//-Create listview with selectionMode: ExtendedSelection instead comboBox to show channels it can be added to favourites
-//-Sometimes, while do some operations on favourite channels(adding/removing) this error ocure:
-//                          QSortFilterProxyModel: index from wrong model passed to mapToSource
-//-Create adding to all channels editor
 
 
 namespace Ui {
@@ -63,6 +59,8 @@ public:
 
     void createFilmsByGenre();
 
+    void showNumberOfFavAndLeftChannels();
+
 signals:
     void finished();
 
@@ -99,8 +97,8 @@ private:
     QStringList genreList;
     QStringList genreLeft;
     QStringList genreChoosed;
-    QString fileFavouritesChannels = "setup.txt";
-    QString fileAllChannels = "channels.txt";
+    QString fileFavouritesChannels = ":/channels.txt";
+    QString fileAllChannels = ":/setup.txt";
 
     const QString selectChannel = "Wybierz kanał";
     QStringListModel *model;
