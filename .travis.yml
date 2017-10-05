@@ -8,5 +8,5 @@ script:
   - cd build
 #  - qmake ../QProgramTV.pro -spec linux-g++ CONFIG+=qml_debug\c++11 && /usr/bin/make
   - qmake ../QProgramTV.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug CONFIG+=c++11
-  - make qmake_all
+#  - make qmake_all
   - make

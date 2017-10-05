@@ -32,7 +32,7 @@ public:
 
     QString removeEntity(QString str);
     void sortByTime(std::vector<Film> &films);
-    Downloader *d = new Downloader();
+    Downloader *d = new Downloader{};
 
 
     void initFavAndLeftChannels();
