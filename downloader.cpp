@@ -11,7 +11,7 @@ void Downloader::doDownload(QString chanel)
 
     manager = new QNetworkAccessManager(this);
 
-    connect(manager, SIGNAL(finished(QNetworkReply*)),
+    QObject::connect(manager, SIGNAL(finished(QNetworkReply*)),
             this, SLOT(replyFinished(QNetworkReply*)));
 
     manager->get(QNetworkRequest(QUrl("http://www.filmweb.pl/program-tv/" + chanel)));
