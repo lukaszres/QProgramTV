@@ -2,6 +2,7 @@
 #define CHANNELS_H
 #include <QVector>
 #include <QFile>
+class QStringList;
 
 class Channels
 {
