@@ -22,7 +22,8 @@ std::vector<Film> HTML::findMarks(QString & htmlContent)
         QRegExp hx (regHour);
         hx.setMinimal(true);
         hx.indexIn(htmlContent, pos);
-        hour = hx.capturedTexts()[0];
+        QStringList list{hx.capturedTexts()};
+        hour = list[0];
 
         QRegExp gx (regGenre);
         gx.setMinimal(true);
