@@ -3,6 +3,7 @@
 #include <QString>
 #include <QTextStream>
 #include <QDebug>
+#include <QStringList>
 
 Channels::Channels(){
 
