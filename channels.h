@@ -2,6 +2,7 @@
 #define CHANNELS_H
 #include <QVector>
 #include <QFile>
+#include <QStringList>
 
 class Channels
 {
@@ -23,7 +24,7 @@ public:
     void setAll (QStringList channels);
 
 private:
-    QStringList channels;
+    QStringList channels{};
     QString fileName;
 };
 
