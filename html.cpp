@@ -2,6 +2,7 @@
 #include <QRegExp>
 #include "html.hpp"
 #include <QDebug>
+#include <QStringList>
 
 std::vector<Film> HTML::findMarks(QString & htmlContent)
 {
