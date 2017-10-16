@@ -3,7 +3,6 @@
 #include <QVector>
 #include <QFile>
 #include <QStringList>
-class QStringList;
 
 class Channels
 {
