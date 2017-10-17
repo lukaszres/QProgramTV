@@ -55,6 +55,7 @@ public:
     void removeLeftFromChoosedGenres();
     void createFilmsByGenre();
     void showNumberOfFavAndLeftChannels();
+    void createTabs();
     QWidget *createMainTab();
     QWidget *createSecondTab();
 

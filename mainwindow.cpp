@@ -18,12 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    QTabWidget *tabWidget = new QTabWidget;
-    QWidget *tab = createMainTab();
-    QWidget *tab_5 = createSecondTab();
-    tabWidget->addTab(tab, tr("Spis filmów"));
-    tabWidget->addTab(tab_5, tr("Ulubione"));
-    setCentralWidget(tabWidget);
+    createTabs();
 
 //    ui->setupUi(this);
     allChannels->setFileName(fileAllChannels);
@@ -187,6 +182,16 @@ void MainWindow::showNumberOfFavAndLeftChannels()
                 "ulubionych kanałów: " + QString::number(f) + ", "
                 "pozostało " + QString::number(c-f) + " kanałów"
                 );
+}
+
+void MainWindow::createTabs()
+{
+    QTabWidget *tabWidget = new QTabWidget;
+    QWidget *tab = createMainTab();
+    QWidget *tab_5 = createSecondTab();
+    tabWidget->addTab(tab, tr("Spis filmów"));
+    tabWidget->addTab(tab_5, tr("Ulubione"));
+    setCentralWidget(tabWidget);
 }
 
 QWidget *MainWindow::createMainTab()
