@@ -58,6 +58,7 @@ public:
     void createTabs();
     QWidget *createMainTab();
     QWidget *createSecondTab();
+    void createConections();
 
 signals:
     void finished();

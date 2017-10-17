@@ -24,17 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     allChannels->setFileName(fileAllChannels);
     favChannels->setFileName(fileFavouritesChannels);
     initFavAndLeftChannels();
-    QObject::connect(d, SIGNAL(finished()), this, SLOT(doDownload_Finished()));
-    QObject::connect(this->pushButton_Start, SIGNAL(clicked(bool)), this, SLOT(on_pushButton_Start_clicked()));
-    QObject::connect(this->pushButton_AddAllGenres, SIGNAL(clicked(bool)), this, SLOT(on_pushButton_AddAllGenres_clicked()));
-    QObject::connect(this->pushButton_AddGenres, SIGNAL(clicked(bool)), this, SLOT(on_pushButton_AddGenres_clicked()));
-    QObject::connect(this->pushButton_RemoveGenres, SIGNAL(clicked(bool)), this, SLOT(on_pushButton_RemoveGenres_clicked()));
-    QObject::connect(this->pushButton_RemoveAllGenres, SIGNAL(clicked(bool)), this, SLOT(on_pushButton_RemoveAllGenres_clicked()));
-    QObject::connect(this->pushButtonRemove, SIGNAL(clicked(bool)), this, SLOT(on_pushButtonRemove_clicked()));
-    QObject::connect(this->pushButtonAdd, SIGNAL(clicked(bool)), this, SLOT(on_pushButtonAdd_clicked()));
-    QObject::connect(this->pushButtonClear, SIGNAL(clicked(bool)), this, SLOT(on_pushButtonClear_clicked()));
-    QObject::connect(this->pushButtonSaveFavourites, SIGNAL(clicked(bool)), this, SLOT(on_pushButtonSaveFavourites_clicked()));
-    QObject::connect(this->pushButtonLoadFavourites, SIGNAL(clicked(bool)), this, SLOT(on_pushButtonLoadFavourites_clicked()));
+    createConections();
 }
 
 MainWindow::~MainWindow()
@@ -313,6 +303,22 @@ QWidget *MainWindow::createSecondTab()
     tab_5Layout->addWidget(tab_5BottomWidget);
     tab_5->setLayout(tab_5Layout);
     return tab_5;
+}
+
+void MainWindow::createConections()
+{
+
+    QObject::connect(d, SIGNAL(finished()), this, SLOT(doDownload_Finished()));
+    QObject::connect(this->pushButton_Start, SIGNAL(clicked(bool)), this, SLOT(on_pushButton_Start_clicked()));
+    QObject::connect(this->pushButton_AddAllGenres, SIGNAL(clicked(bool)), this, SLOT(on_pushButton_AddAllGenres_clicked()));
+    QObject::connect(this->pushButton_AddGenres, SIGNAL(clicked(bool)), this, SLOT(on_pushButton_AddGenres_clicked()));
+    QObject::connect(this->pushButton_RemoveGenres, SIGNAL(clicked(bool)), this, SLOT(on_pushButton_RemoveGenres_clicked()));
+    QObject::connect(this->pushButton_RemoveAllGenres, SIGNAL(clicked(bool)), this, SLOT(on_pushButton_RemoveAllGenres_clicked()));
+    QObject::connect(this->pushButtonRemove, SIGNAL(clicked(bool)), this, SLOT(on_pushButtonRemove_clicked()));
+    QObject::connect(this->pushButtonAdd, SIGNAL(clicked(bool)), this, SLOT(on_pushButtonAdd_clicked()));
+    QObject::connect(this->pushButtonClear, SIGNAL(clicked(bool)), this, SLOT(on_pushButtonClear_clicked()));
+    QObject::connect(this->pushButtonSaveFavourites, SIGNAL(clicked(bool)), this, SLOT(on_pushButtonSaveFavourites_clicked()));
+    QObject::connect(this->pushButtonLoadFavourites, SIGNAL(clicked(bool)), this, SLOT(on_pushButtonLoadFavourites_clicked()));
 }
 
 
