@@ -20,48 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     QTabWidget *tabWidget = new QTabWidget;
     QWidget *tab = createMainTab();
-
-    QWidget *tab_5 = new QWidget;
-
-    QLayout *tab_5Layout = new QVBoxLayout;
-    QWidget *tab_5TopWidget = new QWidget;
-    tab_5TopWidget->setStyleSheet("background-color:red");
-    tab_5TopWidget->setMaximumSize(10000, 300);
-    QLayout *tab_5TopWidgetLayout = new QHBoxLayout;
-    listView->setMaximumSize(400, 300);
-    QWidget *tab_5TopWidgetRightWidget = new QWidget;
-    QLayout *tab_5TopWidgetRightWidgetLayout = new QVBoxLayout;
-
-    tab_5TopWidgetRightWidgetLayout->addWidget(pushButtonRemove);
-    tab_5TopWidgetRightWidgetLayout->addWidget(pushButtonAdd);
-    tab_5TopWidgetRightWidgetLayout->addWidget(pushButtonClear);
-    tab_5TopWidgetRightWidgetLayout->addWidget(comboBoxRemained);
-    tab_5TopWidgetRightWidget->setLayout(tab_5TopWidgetRightWidgetLayout);
-    tab_5TopWidgetLayout->addWidget(listView);
-    tab_5TopWidgetLayout->addWidget(tab_5TopWidgetRightWidget);
-    tab_5TopWidget->setLayout(tab_5TopWidgetLayout);
-    QWidget *tab_5MiddleWidget = new QWidget;
-    tab_5MiddleWidget->setStyleSheet("background-color:blue");
-    tab_5MiddleWidget->setMaximumSize(10000, 65);
-    QLayout *tab_5MiddleWidgetLayout = new QHBoxLayout;
-    tab_5MiddleWidgetLayout->setMargin(0);
-    tab_5MiddleWidgetLayout->setContentsMargins(0, 0, 0, 0);
-
-    tab_5MiddleWidgetLayout->addWidget(pushButtonSaveFavourites);
-    tab_5MiddleWidgetLayout->addWidget(pushButtonLoadFavourites);
-    tab_5MiddleWidget->setLayout(tab_5MiddleWidgetLayout);
-    QWidget *tab_5BottomWidget = new QWidget;
-    tab_5BottomWidget->setStyleSheet("background-color:green");
-    QLayout *tab_5BottomWidgetLayout = new QHBoxLayout;
-
-    tab_5BottomWidgetLayout->addWidget(label_numberOfFavLeftChannels);
-    tab_5BottomWidget->setLayout(tab_5BottomWidgetLayout);
-
-    tab_5Layout->addWidget(tab_5TopWidget);
-    tab_5Layout->addWidget(tab_5MiddleWidget);
-    tab_5Layout->addWidget(tab_5BottomWidget);
-    tab_5->setLayout(tab_5Layout);
-
+    QWidget *tab_5 = createSecondTab();
     tabWidget->addTab(tab, tr("Spis filmów"));
     tabWidget->addTab(tab_5, tr("Ulubione"));
     setCentralWidget(tabWidget);
@@ -304,6 +263,51 @@ QWidget *MainWindow::createMainTab()
 
     tab->setLayout(tabLayout);
     return tab;
+}
+
+QWidget *MainWindow::createSecondTab()
+{
+    QWidget *tab_5 = new QWidget;
+
+    QLayout *tab_5Layout = new QVBoxLayout;
+    QWidget *tab_5TopWidget = new QWidget;
+    tab_5TopWidget->setStyleSheet("background-color:red");
+    tab_5TopWidget->setMaximumSize(10000, 300);
+    QLayout *tab_5TopWidgetLayout = new QHBoxLayout;
+    listView->setMaximumSize(400, 300);
+    QWidget *tab_5TopWidgetRightWidget = new QWidget;
+    QLayout *tab_5TopWidgetRightWidgetLayout = new QVBoxLayout;
+
+    tab_5TopWidgetRightWidgetLayout->addWidget(pushButtonRemove);
+    tab_5TopWidgetRightWidgetLayout->addWidget(pushButtonAdd);
+    tab_5TopWidgetRightWidgetLayout->addWidget(pushButtonClear);
+    tab_5TopWidgetRightWidgetLayout->addWidget(comboBoxRemained);
+    tab_5TopWidgetRightWidget->setLayout(tab_5TopWidgetRightWidgetLayout);
+    tab_5TopWidgetLayout->addWidget(listView);
+    tab_5TopWidgetLayout->addWidget(tab_5TopWidgetRightWidget);
+    tab_5TopWidget->setLayout(tab_5TopWidgetLayout);
+    QWidget *tab_5MiddleWidget = new QWidget;
+    tab_5MiddleWidget->setStyleSheet("background-color:blue");
+    tab_5MiddleWidget->setMaximumSize(10000, 65);
+    QLayout *tab_5MiddleWidgetLayout = new QHBoxLayout;
+    tab_5MiddleWidgetLayout->setMargin(0);
+    tab_5MiddleWidgetLayout->setContentsMargins(0, 0, 0, 0);
+
+    tab_5MiddleWidgetLayout->addWidget(pushButtonSaveFavourites);
+    tab_5MiddleWidgetLayout->addWidget(pushButtonLoadFavourites);
+    tab_5MiddleWidget->setLayout(tab_5MiddleWidgetLayout);
+    QWidget *tab_5BottomWidget = new QWidget;
+    tab_5BottomWidget->setStyleSheet("background-color:green");
+    QLayout *tab_5BottomWidgetLayout = new QHBoxLayout;
+
+    tab_5BottomWidgetLayout->addWidget(label_numberOfFavLeftChannels);
+    tab_5BottomWidget->setLayout(tab_5BottomWidgetLayout);
+
+    tab_5Layout->addWidget(tab_5TopWidget);
+    tab_5Layout->addWidget(tab_5MiddleWidget);
+    tab_5Layout->addWidget(tab_5BottomWidget);
+    tab_5->setLayout(tab_5Layout);
+    return tab_5;
 }
 
 
