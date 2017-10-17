@@ -19,77 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     QTabWidget *tabWidget = new QTabWidget;
-    QWidget *tab = new QWidget;
-    QBoxLayout *tabLayout = new QVBoxLayout;
-
-    textBrowser->setMinimumSize(557, 146);
-    textBrowser->setTextInteractionFlags(Qt::TextSelectableByMouse|Qt::TextSelectableByKeyboard|Qt::LinksAccessibleByMouse|Qt::LinksAccessibleByKeyboard);
-    tabLayout->addWidget(textBrowser);
-
-    QGroupBox *groupBox = new QGroupBox;
-    groupBox->setMinimumSize(557, 223);
-    groupBox->setTitle(tr("Wybierz gatunek i kanał:"));
-    QBoxLayout *groupBoxLayout = new QVBoxLayout;
-    groupBoxLayout->setMargin(0);
-    groupBoxLayout->setSpacing(0);
-
-    QWidget *buttonWidget = new QWidget;
-    buttonWidget->setStyleSheet("background-color:blue;");
-    QLayout *buttonWidgetLayout = new QHBoxLayout;
-    buttonWidgetLayout->setContentsMargins(0, 0, 0, 0);
-    buttonWidgetLayout->setMargin(0);
-    buttonWidgetLayout->setSpacing(0);
-
-    pushButton_Start->setStyleSheet("background-color:green;");
-    pushButton_Start->setMaximumSize(200, 1000);
-    buttonWidgetLayout->addWidget(pushButton_Start);
-    buttonWidget->setLayout(buttonWidgetLayout);
-    groupBoxLayout->addWidget(buttonWidget);
-
-    QWidget *chosenGenre = new QWidget;
-    chosenGenre->setStyleSheet("background-color:yellow;");
-    QBoxLayout *chosenGenreLayout = new QHBoxLayout;
-    chosenGenreLayout->setMargin(0);
-    QGroupBox *leftBox = new QGroupBox(tr("Wybrane gatunki:"));
-    leftBox->setStyleSheet("background-color:red;");
-    QLayout *leftBoxLayout = new QHBoxLayout;
-    leftBoxLayout->addWidget(listView_ChoosedGenres);
-    leftBox->setLayout(leftBoxLayout);
-    chosenGenreLayout->addWidget(leftBox);
-    QGroupBox *midleBox = new QGroupBox;
-    midleBox->setMaximumSize(200, 10000);
-    midleBox->setStyleSheet("background-color:red;");
-    QLayout *midleBoxLayout = new QVBoxLayout;
-    midleBoxLayout->setMargin(0);
-
-    midleBoxLayout->addWidget(pushButton_AddAllGenres);
-
-    midleBoxLayout->addWidget(pushButton_AddGenres);
-
-    midleBoxLayout->addWidget(pushButton_RemoveGenres);
-
-    midleBoxLayout->addWidget(pushButton_RemoveAllGenres);
-    midleBox->setLayout(midleBoxLayout);
-
-    chosenGenreLayout->addWidget(midleBox);
-    QGroupBox *rightBox = new QGroupBox(tr("Dostępne gatunki:"));
-    rightBox->setStyleSheet("background-color:red;");
-    QLayout *rightBoxLayout = new QHBoxLayout;
-
-    rightBoxLayout->addWidget(listView_LeftGenres);
-    rightBox->setLayout(rightBoxLayout);
-    chosenGenreLayout->addWidget(rightBox);
-    chosenGenre->setLayout(chosenGenreLayout);
-    groupBoxLayout->addWidget(chosenGenre);
-
-    groupBoxLayout->addWidget(label_2);
-
-    groupBoxLayout->addWidget(label);
-
-    groupBox->setLayout(groupBoxLayout);
-    tabLayout->addWidget(groupBox);
-
-    tab->setLayout(tabLayout);
+    QWidget *tab = createMainTab();
 
     QWidget *tab_5 = new QWidget;
 
@@ -298,6 +228,82 @@ void MainWindow::showNumberOfFavAndLeftChannels()
                 "ulubionych kanałów: " + QString::number(f) + ", "
                 "pozostało " + QString::number(c-f) + " kanałów"
                 );
+}
+
+QWidget *MainWindow::createMainTab()
+{
+    QWidget *tab = new QWidget;
+    QBoxLayout *tabLayout = new QVBoxLayout;
+
+    textBrowser->setMinimumSize(557, 146);
+    textBrowser->setTextInteractionFlags(Qt::TextSelectableByMouse|Qt::TextSelectableByKeyboard|Qt::LinksAccessibleByMouse|Qt::LinksAccessibleByKeyboard);
+    tabLayout->addWidget(textBrowser);
+
+    QGroupBox *groupBox = new QGroupBox;
+    groupBox->setMinimumSize(557, 223);
+    groupBox->setTitle(tr("Wybierz gatunek i kanał:"));
+    QBoxLayout *groupBoxLayout = new QVBoxLayout;
+    groupBoxLayout->setMargin(0);
+    groupBoxLayout->setSpacing(0);
+
+    QWidget *buttonWidget = new QWidget;
+    buttonWidget->setStyleSheet("background-color:blue;");
+    QLayout *buttonWidgetLayout = new QHBoxLayout;
+    buttonWidgetLayout->setContentsMargins(0, 0, 0, 0);
+    buttonWidgetLayout->setMargin(0);
+    buttonWidgetLayout->setSpacing(0);
+
+    pushButton_Start->setStyleSheet("background-color:green;");
+    pushButton_Start->setMaximumSize(200, 1000);
+    buttonWidgetLayout->addWidget(pushButton_Start);
+    buttonWidget->setLayout(buttonWidgetLayout);
+    groupBoxLayout->addWidget(buttonWidget);
+
+    QWidget *chosenGenre = new QWidget;
+    chosenGenre->setStyleSheet("background-color:yellow;");
+    QBoxLayout *chosenGenreLayout = new QHBoxLayout;
+    chosenGenreLayout->setMargin(0);
+    QGroupBox *leftBox = new QGroupBox(tr("Wybrane gatunki:"));
+    leftBox->setStyleSheet("background-color:red;");
+    QLayout *leftBoxLayout = new QHBoxLayout;
+    leftBoxLayout->addWidget(listView_ChoosedGenres);
+    leftBox->setLayout(leftBoxLayout);
+    chosenGenreLayout->addWidget(leftBox);
+    QGroupBox *midleBox = new QGroupBox;
+    midleBox->setMaximumSize(200, 10000);
+    midleBox->setStyleSheet("background-color:red;");
+    QLayout *midleBoxLayout = new QVBoxLayout;
+    midleBoxLayout->setMargin(0);
+
+    midleBoxLayout->addWidget(pushButton_AddAllGenres);
+
+    midleBoxLayout->addWidget(pushButton_AddGenres);
+
+    midleBoxLayout->addWidget(pushButton_RemoveGenres);
+
+    midleBoxLayout->addWidget(pushButton_RemoveAllGenres);
+    midleBox->setLayout(midleBoxLayout);
+
+    chosenGenreLayout->addWidget(midleBox);
+    QGroupBox *rightBox = new QGroupBox(tr("Dostępne gatunki:"));
+    rightBox->setStyleSheet("background-color:red;");
+    QLayout *rightBoxLayout = new QHBoxLayout;
+
+    rightBoxLayout->addWidget(listView_LeftGenres);
+    rightBox->setLayout(rightBoxLayout);
+    chosenGenreLayout->addWidget(rightBox);
+    chosenGenre->setLayout(chosenGenreLayout);
+    groupBoxLayout->addWidget(chosenGenre);
+
+    groupBoxLayout->addWidget(label_2);
+
+    groupBoxLayout->addWidget(label);
+
+    groupBox->setLayout(groupBoxLayout);
+    tabLayout->addWidget(groupBox);
+
+    tab->setLayout(tabLayout);
+    return tab;
 }
 
 

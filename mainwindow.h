@@ -37,32 +37,25 @@ public:
     void sortByTime(std::vector<Film> &films);
     Downloader *d = new Downloader{};
 
-
     void initFavAndLeftChannels();
-        void showLeftChannels();
-        void showFavChannels();
-            void removeChannelsFromLeftChannels();
-        void showNumberOfFavChannelsAndLeftChannels();
-
+    void showLeftChannels();
+    void showFavChannels();
+    void removeChannelsFromLeftChannels();
+    void showNumberOfFavChannelsAndLeftChannels();
     void addChannelsLeft();
-        void sortComboBoxChannelLeft();
+    void sortComboBoxChannelLeft();
     void removeChannelsFromFavourite();
-
     void clearListView();
     void addChannelToFav();
-
     void saveFavChannelsToFile(QFile &file);
-
     void addAndSortToGenresChoosed();
     void showChoosedGenres();
     void removeChoosedFromLeftGenres();
-
     void addAndSortToGenresLeft();
     void removeLeftFromChoosedGenres();
-
     void createFilmsByGenre();
-
     void showNumberOfFavAndLeftChannels();
+    QWidget *createMainTab();
 
 signals:
     void finished();
