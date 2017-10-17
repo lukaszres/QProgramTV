@@ -1,18 +1,21 @@
-#pragma once
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QComboBox>
+class Film;
 #include "downloader.h"
-#include "film.hpp"
-#include "channels.h"
-
-#include <QStringListModel>
-#include <QSortFilterProxyModel>
 #include <QFile>
+#include "channels.h"
+#include <QStringListModel>
 #include <QMessageBox>
-
+#include <QLabel>
+#include <QListView>
+#include <QTextBrowser>
+#include <QComboBox>
+#include <QPushButton>
+#include <QTextEdit>
+//class Downloader;
+//class QComboBox;
 
 namespace Ui {
 class MainWindow;
@@ -104,6 +107,26 @@ private:
     QStringListModel *model;
     QMessageBox messageBox;
     QMessageBox messageBoxOnLoad;
+
+    QPushButton *pushButton_Start = new QPushButton(tr("Start"));
+    QPushButton *pushButton_AddAllGenres = new QPushButton(tr("<-- wszystkie"));
+    QPushButton *pushButton_AddGenres = new QPushButton(tr("<--"));
+    QPushButton *pushButton_RemoveGenres = new QPushButton(tr("-->"));
+    QPushButton *pushButton_RemoveAllGenres = new QPushButton(tr("wszystkie -->"));
+    QPushButton *pushButtonRemove = new QPushButton(tr("Usuń"));
+    QPushButton *pushButtonAdd = new QPushButton(tr("Dodaj"));
+    QPushButton *pushButtonClear = new QPushButton(tr("Wyczyść"));
+    QPushButton *pushButtonSaveFavourites = new QPushButton(tr("Zapisz"));
+    QPushButton *pushButtonLoadFavourites = new QPushButton(tr("Wczytaj"));
+
+    QLabel *label_2 = new QLabel;
+    QListView *listView_LeftGenres = new QListView;
+    QListView *listView_ChoosedGenres = new QListView;
+    QTextEdit *textBrowser = new QTextEdit;
+    QComboBox *comboBoxRemained = new QComboBox;
+    QListView *listView = new QListView;
+    QLabel *label_numberOfFavLeftChannels = new QLabel;
+    QLabel *label = new QLabel (tr("Wszystkich filmów:"));
 };
 
 #endif // MAINWINDOW_H
