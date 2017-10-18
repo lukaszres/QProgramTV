@@ -41,8 +41,7 @@ HEADERS += \
     html.hpp \
     versionchecker.h
 
-FORMS += \
-    mainwindow.ui
+FORMS +=
 
 RESOURCES += \
     files.qrc
