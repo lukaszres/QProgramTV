@@ -25,8 +25,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
+    main.cpp \
+    mainwindow.cpp \
     channels.cpp \
     downloader.cpp \
     film.cpp \
@@ -34,16 +34,15 @@ SOURCES += \
     versionchecker.cpp
 
 HEADERS += \
-        mainwindow.h \
+    mainwindow.h \
     channels.h \
     downloader.h \
     film.hpp \
     html.hpp \
-    mainwindow.h \
     versionchecker.h
 
 FORMS += \
-        mainwindow.ui
+    mainwindow.ui
 
 RESOURCES += \
     files.qrc

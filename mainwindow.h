@@ -3,20 +3,25 @@
 
 #include <QMainWindow>
 class Film;
-#include "downloader.h"
+#include <QComboBox>
+#include <QEventLoop>
 #include <QFile>
-#include "channels.h"
-#include <QStringListModel>
-#include <QMessageBox>
+#include <QGroupBox>
+#include <QHBoxLayout>
 #include <QLabel>
 #include <QListView>
-#include <QTextBrowser>
-#include <QComboBox>
+#include <QMessageBox>
 #include <QPushButton>
+#include <QSortFilterProxyModel>
+#include <QStringListModel>
+#include <QTabWidget>
 #include <QTextEdit>
-//class Downloader;
-//class QComboBox;
-
+#include <QVBoxLayout>
+#include "downloader.h"
+#include "film.hpp"
+#include "html.hpp"
+#include "channels.h"
+#include <QDebug>
 namespace Ui {
 class MainWindow;
 }
@@ -32,11 +37,9 @@ public:
     void createAllGenres();
     void showLeftGenres();
     void createComboBoxGenre(QComboBox *combobox);
-
     QString removeEntity(QString str);
     void sortByTime(std::vector<Film> &films);
     Downloader *d = new Downloader{};
-
     void initFavAndLeftChannels();
     void showLeftChannels();
     void showFavChannels();
@@ -56,7 +59,7 @@ public:
     void createFilmsByGenre();
     void showNumberOfFavAndLeftChannels();
     void createTabs();
-    QWidget *createMainTab();
+    QWidget *createFirstTab();
     QWidget *createSecondTab();
     void createConections();
 
@@ -65,22 +68,15 @@ signals:
 
 private slots:
     void doDownload_Finished();
-
-
     void on_pushButtonClear_clicked();
     void on_pushButtonAdd_clicked();
     void on_pushButtonRemove_clicked();
-
     void on_pushButtonSaveFavourites_clicked();
     void on_pushButtonLoadFavourites_clicked();
-
     void on_pushButton_Start_clicked();
-
     void on_pushButton_AddGenres_clicked();
     void on_pushButton_RemoveGenres_clicked();
-
     void on_pushButton_AddAllGenres_clicked();
-
     void on_pushButton_RemoveAllGenres_clicked();
 
 private:
