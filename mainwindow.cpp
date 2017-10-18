@@ -1,26 +1,9 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include <QGridLayout>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QPushButton>
-#include <QTabWidget>
-#include <QTextBrowser>
-#include <QGroupBox>
-#include <QLabel>
-#include <QListView>
-#include <QComboBox>
-#include <QSortFilterProxyModel>
-#include "channels.h"
-#include "film.hpp"
-#include "html.hpp"
+
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    QMainWindow(parent)
 {
     createTabs();
-
-//    ui->setupUi(this);
     allChannels->setFileName(fileAllChannels);
     favChannels->setFileName(fileFavouritesChannels);
     initFavAndLeftChannels();
@@ -29,7 +12,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    delete ui;
 }
 
 void MainWindow::on_pushButton_Start_clicked()
@@ -177,14 +159,14 @@ void MainWindow::showNumberOfFavAndLeftChannels()
 void MainWindow::createTabs()
 {
     QTabWidget *tabWidget = new QTabWidget;
-    QWidget *tab = createMainTab();
-    QWidget *tab_5 = createSecondTab();
-    tabWidget->addTab(tab, tr("Spis filmów"));
-    tabWidget->addTab(tab_5, tr("Ulubione"));
+    QWidget *firstTab = createFirstTab();
+    QWidget *secondTab = createSecondTab();
+    tabWidget->addTab(firstTab, tr("Spis filmów"));
+    tabWidget->addTab(secondTab, tr("Ulubione"));
     setCentralWidget(tabWidget);
 }
 
-QWidget *MainWindow::createMainTab()
+QWidget *MainWindow::createFirstTab()
 {
     QWidget *tab = new QWidget;
     QBoxLayout *tabLayout = new QVBoxLayout;
@@ -230,11 +212,8 @@ QWidget *MainWindow::createMainTab()
     midleBoxLayout->setMargin(0);
 
     midleBoxLayout->addWidget(pushButton_AddAllGenres);
-
     midleBoxLayout->addWidget(pushButton_AddGenres);
-
     midleBoxLayout->addWidget(pushButton_RemoveGenres);
-
     midleBoxLayout->addWidget(pushButton_RemoveAllGenres);
     midleBox->setLayout(midleBoxLayout);
 
@@ -262,25 +241,25 @@ QWidget *MainWindow::createMainTab()
 
 QWidget *MainWindow::createSecondTab()
 {
-    QWidget *tab_5 = new QWidget;
+    QWidget *tab2 = new QWidget;
 
-    QLayout *tab_5Layout = new QVBoxLayout;
-    QWidget *tab_5TopWidget = new QWidget;
-    tab_5TopWidget->setStyleSheet("background-color:red");
-    tab_5TopWidget->setMaximumSize(10000, 300);
-    QLayout *tab_5TopWidgetLayout = new QHBoxLayout;
+    QLayout *tab2Layout = new QVBoxLayout;
+    QWidget *tab2TopWidget = new QWidget;
+    tab2TopWidget->setStyleSheet("background-color:red");
+    tab2TopWidget->setMaximumSize(10000, 300);
+    QLayout *tab2TopWidgetLayout = new QHBoxLayout;
     listView->setMaximumSize(400, 300);
-    QWidget *tab_5TopWidgetRightWidget = new QWidget;
-    QLayout *tab_5TopWidgetRightWidgetLayout = new QVBoxLayout;
+    QWidget *tab2TopWidgetRightWidget = new QWidget;
+    QLayout *tab2TopWidgetRightWidgetLayout = new QVBoxLayout;
 
-    tab_5TopWidgetRightWidgetLayout->addWidget(pushButtonRemove);
-    tab_5TopWidgetRightWidgetLayout->addWidget(pushButtonAdd);
-    tab_5TopWidgetRightWidgetLayout->addWidget(pushButtonClear);
-    tab_5TopWidgetRightWidgetLayout->addWidget(comboBoxRemained);
-    tab_5TopWidgetRightWidget->setLayout(tab_5TopWidgetRightWidgetLayout);
-    tab_5TopWidgetLayout->addWidget(listView);
-    tab_5TopWidgetLayout->addWidget(tab_5TopWidgetRightWidget);
-    tab_5TopWidget->setLayout(tab_5TopWidgetLayout);
+    tab2TopWidgetRightWidgetLayout->addWidget(pushButtonRemove);
+    tab2TopWidgetRightWidgetLayout->addWidget(pushButtonAdd);
+    tab2TopWidgetRightWidgetLayout->addWidget(pushButtonClear);
+    tab2TopWidgetRightWidgetLayout->addWidget(comboBoxRemained);
+    tab2TopWidgetRightWidget->setLayout(tab2TopWidgetRightWidgetLayout);
+    tab2TopWidgetLayout->addWidget(listView);
+    tab2TopWidgetLayout->addWidget(tab2TopWidgetRightWidget);
+    tab2TopWidget->setLayout(tab2TopWidgetLayout);
     QWidget *tab_5MiddleWidget = new QWidget;
     tab_5MiddleWidget->setStyleSheet("background-color:blue");
     tab_5MiddleWidget->setMaximumSize(10000, 65);
@@ -298,11 +277,11 @@ QWidget *MainWindow::createSecondTab()
     tab_5BottomWidgetLayout->addWidget(label_numberOfFavLeftChannels);
     tab_5BottomWidget->setLayout(tab_5BottomWidgetLayout);
 
-    tab_5Layout->addWidget(tab_5TopWidget);
-    tab_5Layout->addWidget(tab_5MiddleWidget);
-    tab_5Layout->addWidget(tab_5BottomWidget);
-    tab_5->setLayout(tab_5Layout);
-    return tab_5;
+    tab2Layout->addWidget(tab2TopWidget);
+    tab2Layout->addWidget(tab_5MiddleWidget);
+    tab2Layout->addWidget(tab_5BottomWidget);
+    tab2->setLayout(tab2Layout);
+    return tab2;
 }
 
 void MainWindow::createConections()
@@ -320,8 +299,6 @@ void MainWindow::createConections()
     QObject::connect(this->pushButtonSaveFavourites, SIGNAL(clicked(bool)), this, SLOT(on_pushButtonSaveFavourites_clicked()));
     QObject::connect(this->pushButtonLoadFavourites, SIGNAL(clicked(bool)), this, SLOT(on_pushButtonLoadFavourites_clicked()));
 }
-
-
 
 void MainWindow::on_pushButtonClear_clicked()
 {
@@ -343,8 +320,6 @@ void MainWindow::clearListView()
     listView->setModel(model);
 }
 
-
-
 void MainWindow::on_pushButtonAdd_clicked()
 {
     addChannelToFav();
@@ -361,8 +336,6 @@ void MainWindow::addChannelToFav()
         favChannels->pushBack(comboBoxRemained->currentText());
     }
 }
-
-
 
 void MainWindow::on_pushButtonRemove_clicked()
 {
@@ -408,8 +381,6 @@ void MainWindow::removeChannelsFromFavourite()
         ((QStringListModel*) listView->model())->setStringList(favChannels->getAll());
     }
 }
-
-
 
 void MainWindow::on_pushButtonSaveFavourites_clicked()
 {
@@ -536,6 +507,7 @@ void MainWindow::removeLeftFromChoosedGenres()
 
 void MainWindow::on_pushButton_AddAllGenres_clicked()
 {
+
     listView_LeftGenres->selectAll();
     on_pushButton_AddGenres_clicked();
 }
