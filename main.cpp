@@ -10,8 +10,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     VersionChecker vChecker;
-    vChecker.setVersion(version);
-    vChecker.setFilePath(versionURL);
+    vChecker.setCurrentVersion(version);
+    vChecker.setFileURL(versionURL);
     if (vChecker.isActual())
         qDebug()<<"Twoja wersja jest aktualna.";
     else

@@ -12,12 +12,12 @@ public:
     float getCurrentVersion();
     float getActualVersion();
     bool isActual();
-    void setVersion(float &curentVersion);
-    void setFilePath(QString &filePath);
+    void setCurrentVersion(float &curentVersion);
+    void setFileURL(QString &filePath);
 private:
     float m_CurrentVersion{};
     float m_ActualVersion{};
-    QString m_FilePath;
+    QString m_FileURL;
 signals:
     void finished();
 public slots:
