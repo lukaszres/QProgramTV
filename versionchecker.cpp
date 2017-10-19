@@ -40,7 +40,7 @@ float VersionChecker::getActualVersion()
     connect(manager, SIGNAL(finished(QNetworkReply*)),
             this, SLOT(replyFinished(QNetworkReply*)));
 
-    manager->get(QNetworkRequest(QUrl(m_FilePath)));
+    manager->get(QNetworkRequest(QUrl(m_FileURL)));
 
     QEventLoop loop;
     connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
@@ -71,12 +71,12 @@ bool VersionChecker::isActual()
     return m_CurrentVersion == getActualVersion();
 }
 
-void VersionChecker::setVersion(float &currentVersion)
+void VersionChecker::setCurrentVersion(float &currentVersion)
 {
     m_CurrentVersion = currentVersion;
 }
 
-void VersionChecker::setFilePath(QString &filePath)
+void VersionChecker::setFileURL(QString &filePath)
 {
-    m_FilePath = filePath;
+    m_FileURL = filePath;
 }
