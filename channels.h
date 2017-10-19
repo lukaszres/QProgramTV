@@ -1,14 +1,13 @@
 #ifndef CHANNELS_H
 #define CHANNELS_H
-#include <QVector>
-#include <QFile>
-#include <QStringList>
+class QFile;
+class QString;
+class QStringList;
 
 class Channels
 {
 public:
     Channels();
-
     void setFileName(QString &file);
     void create();
     void createFromFile(QFile &file);
@@ -21,11 +20,10 @@ public:
     QStringList getAll();
     void remove(int i);
     void remove(QString channel);
-    void setAll (QStringList channels);
-
+    void setAll (QStringList m_Channels);
 private:
-    QStringList channels{};
-    QString fileName;
+    QStringList *m_Channels;
+    QString *m_FileName;
 };
 
 #endif // CHANNELS_H
