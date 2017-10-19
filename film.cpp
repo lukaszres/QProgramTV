@@ -1,9 +1,11 @@
+#include <QDateTime>
+#include <QString>
 #include "film.hpp"
 
 Film::Film(QString channel, QString genre, QString title, QString genreSuffix, QDateTime dateTime){
-    this->channel = channel;
-    this->genre = genre;
-    this->title = title;
-    this->genreSuffix = genreSuffix;
-    this->dateTime = dateTime;
+    m_Channel = channel;
+    m_Genre = genre;
+    m_Title = title;
+    m_GenreSuffix = genreSuffix;
+    m_DateTime = dateTime;
 }
