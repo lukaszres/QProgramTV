@@ -1,6 +1,7 @@
 #include "channels.h"
 #include <QtAlgorithms>
 #include <QString>
+#include <QStringList>
 #include <QTextStream>
 #include <QDebug>
 #include <QFile>
