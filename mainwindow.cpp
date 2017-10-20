@@ -1,8 +1,16 @@
+#include "downloader.h"
+#include "film.hpp"
+#include "html.hpp"
+#include "channels.h"
 #include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
+    d = new Downloader{};
+    allChannels = new Channels();
+    favChannels = new Channels();
+    leftChannels = new Channels();
     createTabs();
     allChannels->setFileName(fileAllChannels);
     favChannels->setFileName(fileFavouritesChannels);

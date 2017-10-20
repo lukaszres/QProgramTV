@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-class Film;
 #include <QComboBox>
 #include <QEventLoop>
 #include <QFile>
@@ -17,11 +16,12 @@ class Film;
 #include <QTabWidget>
 #include <QTextEdit>
 #include <QVBoxLayout>
-#include "downloader.h"
-#include "film.hpp"
-#include "html.hpp"
-#include "channels.h"
 #include <QDebug>
+
+class Channels;
+class Downloader;
+class Film;
+
 namespace Ui {
 class MainWindow;
 }
@@ -39,7 +39,7 @@ public:
     void createComboBoxGenre(QComboBox *combobox);
     QString removeEntity(QString str);
     void sortByTime(std::vector<Film> &films);
-    Downloader *d = new Downloader{};
+    Downloader *d;
     void initFavAndLeftChannels();
     void showLeftChannels();
     void showFavChannels();
@@ -81,9 +81,9 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Channels *allChannels = new Channels();
-    Channels *favChannels = new Channels();
-    Channels *leftChannels = new Channels();
+    Channels *allChannels;
+    Channels *favChannels;
+    Channels *leftChannels;
     QString textBrowserContent;
     QString currentChannel;
 
