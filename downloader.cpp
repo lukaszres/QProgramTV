@@ -1,3 +1,9 @@
+#include <QDateTime>
+#include <QDebug>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QUrl>
 #include "downloader.h"
 #include "mainwindow.h"
 

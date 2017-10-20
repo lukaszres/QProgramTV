@@ -1,40 +1,38 @@
 #pragma once
 #ifndef FILM_H
 #define FILM_H
-#include <QString>
-#include <QDateTime>
 
 class Film{
 public:
-    Film(QString channel, QString genre, QString title, QString genreSuffix, QDateTime dateTime);
+    Film(QString m_Channel, QString m_Genre, QString m_Title, QString m_GenreSuffix, QDateTime m_DateTime);
 
     const QString& getGenre() const {
-		return genre;
+        return m_Genre;
 	}
     const QString& getGenreSuffix() const {
-        return genreSuffix;
+        return m_GenreSuffix;
     }
 
     const QString& getTitle() const {
-		return title;
+        return m_Title;
 	}
 
     const QString& getChannel() const {
-		return channel;
+        return m_Channel;
     }
 
     QString getDate() const;
     void setDate(const QString &value);
 
     QDateTime getDateTime() const {
-        return dateTime;
+        return m_DateTime;
     }
 
 private:
-    QString channel;
-    QString genre;
-    QString genreSuffix;
-    QString title;
-    QDateTime dateTime;
+    QString m_Channel;
+    QString m_Genre;
+    QString m_GenreSuffix;
+    QString m_Title;
+    QDateTime m_DateTime;
 };
 #endif // FILM_H
