@@ -2,7 +2,8 @@
 #ifndef HTTP_H
 #define HTTP_H
 #include <QDateTime>
-#include "film.hpp"
+//#include "film.hpp"
+class Film;
 
 class HTML{
 public:

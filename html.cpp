@@ -3,6 +3,7 @@
 #include "html.hpp"
 #include <QDebug>
 #include <QStringList>
+#include "film.hpp"
 
 std::vector<Film> HTML::findMarks(QString & htmlContent)
 {
