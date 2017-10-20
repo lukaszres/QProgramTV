@@ -6,7 +6,6 @@
 #include <QDebug>
 #include <QFile>
 
-
 Channels::Channels(){
     m_Channels = new QStringList();
     m_FileName = new QString;
@@ -38,11 +37,8 @@ void Channels::createFromFile(QFile &file){
 
 void Channels::sort()
 {
-    if (!m_Channels->empty())
-    {
     std::sort(m_Channels->begin(), m_Channels->end(),
           [](const QString &a, const QString &b){return a.toLower() < b.toLower();});
-    }
 }
 
 void Channels::setFileName(QString &file){
