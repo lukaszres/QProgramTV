@@ -191,31 +191,26 @@ QWidget *MainWindow::createFirstTab()
     groupBoxLayout->setSpacing(0);
 
     QWidget *buttonWidget = new QWidget;
-    buttonWidget->setStyleSheet("background-color:blue;");
     QLayout *buttonWidgetLayout = new QHBoxLayout;
     buttonWidgetLayout->setContentsMargins(0, 0, 0, 0);
     buttonWidgetLayout->setMargin(0);
     buttonWidgetLayout->setSpacing(0);
 
-    pushButton_Start->setStyleSheet("background-color:green;");
     pushButton_Start->setMaximumSize(200, 1000);
     buttonWidgetLayout->addWidget(pushButton_Start);
     buttonWidget->setLayout(buttonWidgetLayout);
     groupBoxLayout->addWidget(buttonWidget);
 
     QWidget *chosenGenre = new QWidget;
-    chosenGenre->setStyleSheet("background-color:yellow;");
     QBoxLayout *chosenGenreLayout = new QHBoxLayout;
     chosenGenreLayout->setMargin(0);
     QGroupBox *leftBox = new QGroupBox(tr("Wybrane gatunki:"));
-    leftBox->setStyleSheet("background-color:red;");
     QLayout *leftBoxLayout = new QHBoxLayout;
     leftBoxLayout->addWidget(listView_ChoosedGenres);
     leftBox->setLayout(leftBoxLayout);
     chosenGenreLayout->addWidget(leftBox);
     QGroupBox *midleBox = new QGroupBox;
     midleBox->setMaximumSize(200, 10000);
-    midleBox->setStyleSheet("background-color:red;");
     QLayout *midleBoxLayout = new QVBoxLayout;
     midleBoxLayout->setMargin(0);
 
@@ -227,7 +222,6 @@ QWidget *MainWindow::createFirstTab()
 
     chosenGenreLayout->addWidget(midleBox);
     QGroupBox *rightBox = new QGroupBox(tr("Dostępne gatunki:"));
-    rightBox->setStyleSheet("background-color:red;");
     QLayout *rightBoxLayout = new QHBoxLayout;
 
     rightBoxLayout->addWidget(listView_LeftGenres);
@@ -253,7 +247,6 @@ QWidget *MainWindow::createSecondTab()
 
     QLayout *tab2Layout = new QVBoxLayout;
     QWidget *tab2TopWidget = new QWidget;
-    tab2TopWidget->setStyleSheet("background-color:red");
     tab2TopWidget->setMaximumSize(10000, 300);
     QLayout *tab2TopWidgetLayout = new QHBoxLayout;
     listView->setMaximumSize(400, 300);
@@ -269,7 +262,6 @@ QWidget *MainWindow::createSecondTab()
     tab2TopWidgetLayout->addWidget(tab2TopWidgetRightWidget);
     tab2TopWidget->setLayout(tab2TopWidgetLayout);
     QWidget *tab_5MiddleWidget = new QWidget;
-    tab_5MiddleWidget->setStyleSheet("background-color:blue");
     tab_5MiddleWidget->setMaximumSize(10000, 65);
     QLayout *tab_5MiddleWidgetLayout = new QHBoxLayout;
     tab_5MiddleWidgetLayout->setMargin(0);
@@ -279,7 +271,6 @@ QWidget *MainWindow::createSecondTab()
     tab_5MiddleWidgetLayout->addWidget(pushButtonLoadFavourites);
     tab_5MiddleWidget->setLayout(tab_5MiddleWidgetLayout);
     QWidget *tab_5BottomWidget = new QWidget;
-    tab_5BottomWidget->setStyleSheet("background-color:green");
     QLayout *tab_5BottomWidgetLayout = new QHBoxLayout;
 
     tab_5BottomWidgetLayout->addWidget(label_numberOfFavLeftChannels);
